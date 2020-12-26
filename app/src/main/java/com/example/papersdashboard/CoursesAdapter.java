@@ -41,6 +41,8 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.MyViewHo
         holder.semester.setText(items.get(position).getCourse_semester());
 
 
+
+
     }
 
     @Override
