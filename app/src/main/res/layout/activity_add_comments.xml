@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddComments">
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:src="@drawable/papertemplate" />
+    <TextView
+        android:id="@+id/qnot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Question:1 Define any two types of Layouts?"
+        android:layout_marginTop="390dp"
+        android:scrollbars = "vertical"
+        android:textStyle="bold"
+        android:scrollbarSize="15dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#CDCBCB"
+        android:layout_marginTop="420dp">
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_addques"
+        android:backgroundTint="#2196f3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="515dp"
+        android:text="ADD"
+        />
+    <TextView
+        android:id="@+id/qnot2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Question:2 What languages are used for android development?"
+        android:layout_marginTop="570dp"
+        android:scrollbars = "vertical"
+        android:textStyle="bold"
+        android:scrollbarSize="15dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#CDCBCB"
+        android:layout_marginTop="620dp">
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_addques2"
+        android:backgroundTint="#2196f3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="715dp"
+        android:text="ADD"
+        />
+    <Button
+        android:backgroundTint="#2196f3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Generate"
+        android:layout_marginTop="780dp"/>
+</RelativeLayout>
