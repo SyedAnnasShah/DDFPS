@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_500"
+    android:background="#2196f3"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -18,9 +18,7 @@
     android:layout_height="130dp"
     android:id="@+id/iv_icon"
     android:layout_gravity="center"
-    android:src="@drawable/degree"
-
-    />
+    android:src="@drawable/degree" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,9 +27,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_margin="10dp"
-
-        />
+        android:layout_margin="10dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,9 +36,7 @@
             android:textSize="25dp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:layout_margin="10dp"
-
-            />
+            android:layout_margin="10dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,7 +47,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@drawable/rectangle_layout"
+        android:backgroundTint="@color/white">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,9 +57,7 @@
         android:textStyle="bold"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="40dp"
-        />
-
+        android:layout_marginTop="40dp" />
     <EditText
         android:id="@+id/et_user"
         android:layout_width="match_parent"
@@ -103,6 +96,9 @@
         android:textColorHint="#0C0B0B" />
 
     <Button
+
+
+        android:backgroundTint="#2196f3"
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -115,21 +111,20 @@
         android:text="Log In"
         android:textColor="#ffffff"
         android:textSize="20dp"
-        app:backgroundTint="#1E70D5" />
+        />
 
-    <TextView
-        android:id="@+id/tv_forgotPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_login"
-        android:layout_centerHorizontal="false"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:gravity="center"
-        android:text="Forgot Password?"
-        android:textColor="#4169e1"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
+<!--    <TextView-->
+<!--        android:id="@+id/tv_forgotPassword"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/btn_login"-->
+<!--        android:layout_centerHorizontal="false"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:ems="10"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Forgot Password?"-->
+<!--        android:textColor="#4169e1"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold" />-->
     </LinearLayout>
 </RelativeLayout>

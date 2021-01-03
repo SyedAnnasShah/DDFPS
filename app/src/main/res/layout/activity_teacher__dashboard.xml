@@ -24,10 +24,10 @@
 
                 <ImageView
                     android:id="@+id/iv_Tmenu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:onClick="ClickMenu"
-                    android:src="@drawable/ic_menu" />
+                    android:src="@drawable/logomenu" />
 
                 <TextView
                     android:id="@+id/tv_teacher_menu"
@@ -35,16 +35,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:textColor="#2196f3"
                     android:text="DASHBOARD"
                     android:textSize="32dp"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/img_addPaper"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@color/white"
-                    android:src="@drawable/ic_add" />
+                    android:src="@drawable/logoadd" />
 
             </LinearLayout>
 
@@ -83,8 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottom_navigation"
-        app:menu="@menu/menu_nav"
+        app:menu="@menu/tecaher_menu_nav"
         android:background="?android:attr/windowBackground"/>
-
 
 </RelativeLayout>

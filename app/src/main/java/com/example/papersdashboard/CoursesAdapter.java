@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,9 +40,19 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.MyViewHo
         holder.version.setText(items.get(position).getCourse_version());
         holder.status.setText(items.get(position).getCourse_status());
         holder.semester.setText(items.get(position).getCourse_semester());
+        Toast.makeText(context, ""+holder.role, Toast.LENGTH_SHORT).show();
 
+        if (holder.role.equals("Admin"))
+        {
 
+            holder.iv_admin.setVisibility(View.VISIBLE);
 
+        }else if (holder.role.equals("Professor")){
+
+             holder.iv_teacher.setVisibility(View.VISIBLE);
+        }else if (holder.role.equals("Director")){
+            holder.iv_teacher.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -56,6 +67,9 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.MyViewHo
         TextView version ;
         TextView status ;
         TextView semester;
+        SharedPreferences sharedPreferences;
+        String role;
+        ImageView iv_teacher,iv_admin;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +78,11 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.MyViewHo
             version =itemView.findViewById(R.id.version);
             status =itemView.findViewById(R.id.status);
             semester =itemView.findViewById(R.id.semester);
+            iv_teacher =itemView.findViewById(R.id.iv_teacher);
+            iv_admin =itemView.findViewById(R.id.iv_admin);
+
+            sharedPreferences=context.getSharedPreferences("MySharedPref",MODE_PRIVATE);
+            role=sharedPreferences.getString("role","");
         }
     }
 }

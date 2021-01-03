@@ -29,21 +29,29 @@
                         <ImageView
                             android:onClick="A_ClickMenu"
                             android:id="@+id/iv_Amenu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_menu"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/logomenu"
                             tools:ignore="OnClick" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="DASHBOARD"
+                            android:textColor="#2196f3"
                             android:gravity="center"
                             android:textStyle="bold"
                             android:textSize="32dp"
                             />
 
                 </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/admin_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/admin_recycler"
                 android:layout_width="match_parent"
@@ -70,6 +78,13 @@
         </RelativeLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/admin_bottom_navigation"
+        app:menu="@menu/admin_menu_nav"
+        android:background="?android:attr/windowBackground"/>
 
 
 </RelativeLayout>

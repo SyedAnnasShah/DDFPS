@@ -13,10 +13,10 @@ public class teachercard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teachercard);
 
-        Spinner spinner_courses = findViewById(R.id.spinner_courses);
-        String[] items_courses = new String[]{"PF", "DDS", "OOP"};
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items_courses);
-        spinner_courses.setAdapter(adapter1);
+//        Spinner spinner_courses = findViewById(R.id.spinner_courses);
+//        String[] items_courses = new String[]{"PF", "DDS", "OOP"};
+//        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items_courses);
+//        spinner_courses.setAdapter(adapter1);
         Spinner spinner_semester = findViewById(R.id.spinner_semester);
         String[] items_semester = new String[]{"1", "2", "4"};
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items_semester);

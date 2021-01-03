@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_500"
+    android:background="#2196f3"
     tools:context=".teachercard">
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,24 +18,24 @@
         android:orientation="vertical"
         android:background="@color/white"
         tools:ignore="MissingConstraints">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Courses"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            />
-        <Spinner
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/spinner_courses"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"/>
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Courses"-->
+<!--            android:textSize="18dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            />-->
+<!--        <Spinner-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:id="@+id/spinner_courses"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@android:drawable/btn_dropdown"-->
+<!--            android:spinnerMode="dropdown"/>-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,6 +118,7 @@
                 android:background="@color/white"/>
         </LinearLayout>
         <Button
+
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -126,23 +127,23 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
             android:fontFamily="sans-serif-condensed-medium"
-            android:text="SubmiT"
+            android:text="Generate"
             android:textColor="#ffffff"
             android:textSize="20dp"
-            app:backgroundTint="#1E70D5" />
-        <Button
-            android:id="@+id/cancel_button"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="CANCEL"
-            android:textColor="#ffffff"
-            android:textSize="20dp"
-            app:backgroundTint="#1E70D5" />
+            app:backgroundTint="#2196f3" />
+<!--        <Button-->
+<!--            android:id="@+id/cancel_button"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:fontFamily="sans-serif-condensed-medium"-->
+<!--            android:text="CANCEL"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:textSize="20dp"-->
+<!--            app:backgroundTint="#1E70D5" />-->
 
     </LinearLayout>
 

@@ -23,13 +23,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
 //    //initialize drawer
 //    DrawerLayout drawerLayout;
+
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Button btnLogin;
-    TextView textView;
+//    TextView textView;
     EditText user,pass;
 //    private View Teacher_drawer_layout;
 
@@ -39,13 +39,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         sharedPreferences= getSharedPreferences("MySharedPref",MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        textView= (TextView)findViewById(R.id.tv_forgotPassword);
+//        textView= (TextView)findViewById(R.id.tv_forgotPassword);
+
+
 //        //assign variables
 //        drawerLayout= findViewById(R.id.Teacher_drawer_layout);
+        // for activity testing (directly opening activity)
+//        Intent intent = new Intent(MainActivity.this, TeacherCourses.class);
+//        startActivity(intent);
 
         user=findViewById(R.id.et_user);
         pass=findViewById(R.id.et_password);
-
         btnLogin= (Button) findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,25 +72,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<Login> call, Response<Login> response) {
                             if(response.isSuccessful()) {
                                 Login res = response.body();
+                                int id= res.getMemberid();
+
+                                Toast.makeText(MainActivity.this, ""+id, Toast.LENGTH_SHORT).show();
+
+                                memberId(id);
+
+
+
                                 Toast.makeText(MainActivity.this, "SuccessFully Login " + res, Toast.LENGTH_SHORT).show();
-                                if(res.getRole().equals("Professor")) {
-                                    Intent intent = new Intent(MainActivity.this, Teacher_Dashboard.class);
-                                    editor.putString("role", res.getRole());
-                                    editor.commit();
-                                    startActivity(intent);
-                                }
-                                else if(res.getRole().equals("Admin")) {
-                                    Intent intent = new Intent(MainActivity.this, admin_dashboard.class);
-                                    editor.putString("role", res.getRole());
-                                    editor.commit();
-                                    startActivity(intent);
-                                }
-                                else if(res.getRole().equals("Director")) {
-                                    Intent intent = new Intent(MainActivity.this, director_dashboard.class);
-                                    editor.putString("role", res.getRole());
-                                    editor.commit();
-                                    startActivity(intent);
-                                }
+
                             }
                             else
                                 Toast.makeText(MainActivity.this, "Invalid Crediential", Toast.LENGTH_SHORT).show();
@@ -103,6 +98,64 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void memberId(int  id) {
+
+        Call<MembersClass> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getMemberType(id);
+        call.enqueue(new Callback<MembersClass>() {
+            @Override
+            public void onResponse(Call<MembersClass> call, Response<MembersClass> response) {
+                if(response.isSuccessful()) {
+                    MembersClass res = response.body();
+
+                    String mType= res.getMembertype();
+
+                    if(res.getMembertype().equals("Professor")) {
+                        Intent intent = new Intent(MainActivity.this, Teacher_Dashboard.class);
+                        editor.putString("role", res.getMembertype());
+                        editor.commit();
+                        startActivity(intent);
+                    }
+                    else if(res.getMembertype().equals("Admin")) {
+                        Intent intent = new Intent(MainActivity.this, admin_dashboard.class);
+                        editor.putString("role", res.getMembertype());
+                        editor.commit();
+                        startActivity(intent);
+                    }
+                    else if(res.getMembertype().equals("Director")) {
+                        Intent intent = new Intent(MainActivity.this, director_dashboard.class);
+                        editor.putString("role", res.getMembertype());
+                        editor.commit();
+                        startActivity(intent);
+                    }
+
+
+
+                    Toast.makeText(MainActivity.this, "SuccessFull " + mType, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    try {
+                        Toast.makeText(MainActivity.this, "Invalid Crediential"+response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MembersClass> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Failed  "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("Failed",t.getMessage());
+            }
+        });
+
+
+    }
+
+
     //CLICK MENU
 //    public void ClickMenu(View view){
 //        // open drawer
@@ -118,40 +171,47 @@ public class MainActivity extends AppCompatActivity {
 
 class Login
 {
-    private int     id=0;
-    private String  userName="";
-    private String  pass="";
-    private String  Role="";
-    private String  Email="";
+    private int     userid;
+    private int     memberid;
+    public String  username;
+    private String  password;
 
-    String getUserName(){
-        return userName;
+    public Login(int userid, int memberid, String username, String password) {
+        this.userid = userid;
+        this.memberid = memberid;
+        this.username = username;
+        this.password = password;
     }
-    void setUserName(String userName) {
-        this.userName=userName;
+
+    public int getUserid() {
+        return userid;
     }
-    String getPassword(){
-        return pass;
+
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
-    void setPassword(String pass){
-        this.pass= pass;
+
+    public int getMemberid() {
+        return memberid;
     }
-    String getRole(){
-        return Role;
+
+    public void setMemberid(int memberid) {
+        this.memberid = memberid;
     }
-    void setRole(String Role) {
-        this.Role=Role;
+
+    public String getUsername() {
+        return username;
     }
-    String getEmail(){
-        return Email;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
-    void setEmail(String Email) {
-        this.Email=Email;
+
+    public String getPassword() {
+        return password;
     }
-    int getId(){
-        return id;
-    }
-    void setId(int id) {
-        this.id=id;
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

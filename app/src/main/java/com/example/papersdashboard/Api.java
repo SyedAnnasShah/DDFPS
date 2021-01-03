@@ -32,4 +32,11 @@ public interface Api {
     @GET("Dcourses")
     Call<List<course>> getDCourses(
     );
+
+    @GET("MemberType")
+    Call<MembersClass>getMemberType(
+            @Query("memberid") int id
+    );
+
+
 }

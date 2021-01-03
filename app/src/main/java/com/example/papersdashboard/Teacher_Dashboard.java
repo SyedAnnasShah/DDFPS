@@ -27,9 +27,6 @@ public class Teacher_Dashboard extends AppCompatActivity implements NavigationVi
     SharedPreferences.Editor editor;
     private DrawerLayout drawerLayout;
     ImageView iv_menu;
-
-    private View Teacher_drawer_layout;
-
     ImageView addPaper;
 
     @Override
@@ -48,6 +45,7 @@ public class Teacher_Dashboard extends AppCompatActivity implements NavigationVi
 //            addPaper.setVisibility(View.VISIBLE);
 //        }
         //assign variables
+
         iv_menu =findViewById(R.id.iv_Tmenu);
         iv_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,11 +73,10 @@ public class Teacher_Dashboard extends AppCompatActivity implements NavigationVi
         addPaper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Teacher_Dashboard.this,teachercard.class);
+                Intent intent = new Intent(Teacher_Dashboard.this,Generate_paper.class);
                 startActivity(intent);
             }
         });
-
     }
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener=
             new BottomNavigationView.OnNavigationItemSelectedListener() {

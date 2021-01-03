@@ -4,9 +4,6 @@
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_message"
-            android:title="Info" />
-        <item
             android:id="@+id/nav_profile"
             android:title="Profile" />
     </group>
@@ -14,10 +11,14 @@
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:title="DLD" />
+                android:title="PF" />
             <item
                 android:id="@+id/nav_send"
-                android:title="PF" />
+                android:title="OOP" />
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Log out" />
         </menu>
     </item>
+
 </menu>
