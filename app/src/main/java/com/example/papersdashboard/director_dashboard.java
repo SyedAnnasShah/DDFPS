@@ -9,11 +9,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -28,6 +30,8 @@ import retrofit2.Response;
 public class director_dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
+    SharedPreferences sharedPreferences;
+    TextView tv_username;
 //    RecyclerView recyclerView;
 //    CoursesAdapter adapter;
       ImageView iv_menu;
@@ -38,6 +42,13 @@ public class director_dashboard extends AppCompatActivity implements NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_director_dashboard);
         drawerLayout= findViewById(R.id.director_drawer_layout);
+        sharedPreferences= getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        tv_username = (TextView) headerView.findViewById(R.id.tv_drawerusername);
+        String name= sharedPreferences.getString("name","");
+        name=name.toUpperCase();
+        tv_username.setText(name);
         iv_menu=(ImageView)findViewById(R.id.iv_Dmenu);
         iv_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,31 +56,31 @@ public class director_dashboard extends AppCompatActivity implements NavigationV
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        PendingFragment fragment1=new PendingFragment();
-        FragmentTransaction ft1=getSupportFragmentManager().beginTransaction();
-        ft1.replace(R.id.director_fragment_container,fragment1,"");
-        ft1.commit();
+        fragment_due fragment0 = new fragment_due();
+        FragmentTransaction ft0 = getSupportFragmentManager().beginTransaction();
+        ft0.replace(R.id.director_fragment_container, fragment0, "");
+        ft0.commit();
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.director_bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(selectedListener);
-
-
-//        recyclerView =findViewById(R.id.director_recycler);
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        setDCourses();
     }
+
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener=
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
-                        case R.id.nav_dPending:
-                            PendingFragment fragment1 = new PendingFragment();
+                        case R.id.nav_dDue:
+                            fragment_due fragment0 = new fragment_due();
+                            FragmentTransaction ft0 = getSupportFragmentManager().beginTransaction();
+                            ft0.replace(R.id.director_fragment_container, fragment0, "");
+                            ft0.commit();
+                            return true;
+                        case R.id.nav_dRequested:
+                            fragment_requested fragment1 = new fragment_requested();
                             FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
                             ft1.replace(R.id.director_fragment_container, fragment1, "");
                             ft1.commit();

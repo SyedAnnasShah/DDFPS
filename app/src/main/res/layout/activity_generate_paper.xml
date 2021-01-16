@@ -11,51 +11,74 @@
         android:layout_height="400dp"
         android:src="@drawable/papertemplate" />
     <ScrollView
+        android:id="@+id/svAdded"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="400dp">
     <TextView
         android:id="@+id/addedques"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:padding="10dp"
         android:scrollbars = "vertical"
         android:scrollbarSize="15dp" />
     </ScrollView>
     <ScrollView
+        android:layout_marginLeft="7dp"
+        android:id="@+id/svAdd"
         android:layout_width="300dp"
         android:layout_height="150dp"
         android:layout_marginTop="560dp"
         android:background="#CDCBCB">
         <EditText
             android:id="@+id/addingques"
-            android:layout_width="300dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:padding="10dp"
-            android:textStyle="bold"
-            android:text=""
             android:scrollbars = "vertical"
             android:scrollbarSize="15dp" />
     </ScrollView>
-    <Spinner
-        android:id="@+id/spinnerdifficulty"
-        android:layout_width="110dp"
-        android:layout_height="75dp"
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/svAdded"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="560dp" />
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/svAdd"
+        android:layout_marginTop="30dp">
+    <Spinner
+        android:layout_alignParentLeft="true"
+        android:id="@+id/spinnerdifficulty"
+        android:layout_width="130dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="45dp" />
     <Button
+        android:layout_centerInParent="true"
+        android:padding="5dp"
+        android:id="@+id/btn_addimage"
+        android:backgroundTint="#2196f3"
+        android:layout_width="120dp"
+        android:layout_height="55dp"
+        android:text="Add Image" />
+
+    <Button
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
         android:id="@+id/btn_addques"
         android:backgroundTint="#2196f3"
-        android:layout_width="110dp"
-        android:layout_height="75dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="635dp"
-        android:text="ADD"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:text="Add Question" />
+    </RelativeLayout>
     <Button
+        android:id="@+id/btn_generatePaper"
         android:backgroundTint="#2196f3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Generate"
-        android:layout_marginTop="780dp"/>
+        android:layout_marginTop="800dp"/>
 </RelativeLayout>

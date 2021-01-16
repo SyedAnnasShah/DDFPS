@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_dPending"
+        android:id="@+id/nav_dDue"
         android:icon="@drawable/pending"
-        android:title="Pending" />
+        android:title="Due" />
+    <item
+        android:id="@+id/nav_dRequested"
+        android:icon="@drawable/requested"
+        android:title="Requested" />
     <item
         android:id="@+id/nav_dApproved"
         android:icon="@drawable/approved"

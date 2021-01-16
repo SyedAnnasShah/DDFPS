@@ -69,7 +69,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:background="@android:color/white">
-
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/nav_view_courses"
                 android:layout_width="wrap_content"
@@ -78,7 +77,6 @@
                 app:headerLayout="@layout/nav_haeder"
                 app:menu="@menu/drawer_menu"
                 />
-
         </RelativeLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
 

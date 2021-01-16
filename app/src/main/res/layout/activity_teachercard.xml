@@ -4,42 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2196f3"
     tools:context=".teachercard">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/layout1"
-        android:id="@+id/layout2"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:orientation="vertical"
-        android:background="@color/white"
-        tools:ignore="MissingConstraints">
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Courses"-->
-<!--            android:textSize="18dp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            />-->
-<!--        <Spinner-->
-<!--            android:layout_marginLeft="5dp"-->
-<!--            android:layout_marginRight="5dp"-->
-<!--            android:id="@+id/spinner_courses"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@android:drawable/btn_dropdown"-->
-<!--            android:spinnerMode="dropdown"/>-->
+        android:layout_height="300dp"
+        android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Semester"
+            android:text="Session"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/sessions_layout"
+            android:background="#CDCBCB"
+            android:id="@+id/recycler_session"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:orientation="vertical">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Type"
             android:textSize="18dp"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"
@@ -49,43 +43,7 @@
         <Spinner
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:id="@+id/spinner_semester"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Section"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            />
-        <Spinner
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/spinner_section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Discipline"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            />
-        <Spinner
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/spinner_discipline"
+            android:id="@+id/spinner_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/btn_dropdown"
@@ -98,8 +56,7 @@
             android:textStyle="bold"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            />
+            android:layout_marginTop="20dp" />
         <LinearLayout
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
@@ -118,33 +75,15 @@
                 android:background="@color/white"/>
         </LinearLayout>
         <Button
-
-            android:id="@+id/btn_submit"
+            android:id="@+id/btn_gotoGeneratePaper"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
-            android:fontFamily="sans-serif-condensed-medium"
             android:text="Generate"
-            android:textColor="#ffffff"
             android:textSize="20dp"
             app:backgroundTint="#2196f3" />
-<!--        <Button-->
-<!--            android:id="@+id/cancel_button"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:fontFamily="sans-serif-condensed-medium"-->
-<!--            android:text="CANCEL"-->
-<!--            android:textColor="#ffffff"-->
-<!--            android:textSize="20dp"-->
-<!--            app:backgroundTint="#1E70D5" />-->
-
     </LinearLayout>
-
 </RelativeLayout>

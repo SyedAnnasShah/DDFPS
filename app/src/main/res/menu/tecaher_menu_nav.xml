@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <item
+        android:id="@+id/nav_tDue"
+        android:icon="@drawable/pending"
+        android:title="Due" />
+    <item
+        android:id="@+id/nav_tRequested"
+        android:icon="@drawable/requested"
+        android:title="Requested" />
     <item
         android:id="@+id/nav_tApproved"
         android:icon="@drawable/approved"
         android:title="Approved" />
     <item
-        android:id="@+id/nav_tPending"
-        android:icon="@drawable/pending"
-        android:title="Pending" />
-    <item
         android:id="@+id/nav_tRejected"
         android:icon="@drawable/rejected"
         android:title="Rejected" />
-    <item
-        android:id="@+id/nav_tRequested"
-        android:icon="@drawable/requested"
-        android:title="Requested" />
 
 </menu>

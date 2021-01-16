@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -30,6 +31,8 @@ import retrofit2.Response;
 public class admin_dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
+    SharedPreferences sharedPreferences;
+    TextView tv_username;
 //    RecyclerView recyclerView;
 //    CoursesAdapter adapter;
     ImageView iv_menu;
@@ -37,7 +40,15 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashboard);
+        sharedPreferences= getSharedPreferences("MySharedPref",MODE_PRIVATE);
         drawerLayout= findViewById(R.id.admin_drawer_layout);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        tv_username = (TextView) headerView.findViewById(R.id.tv_drawerusername);
+        String name= sharedPreferences.getString("name","");
+        name=name.toUpperCase();
+        Toast.makeText(this, "name is   "+name, Toast.LENGTH_LONG).show();
+        tv_username.setText(name);
         iv_menu=(ImageView)findViewById(R.id.iv_Amenu);
         iv_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +56,10 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-        NavigationView navigationView = findViewById(R.id.nav_view);
-
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        PendingFragment fragment1=new PendingFragment();
+        ApprovedFragment fragment1=new ApprovedFragment();
         FragmentTransaction ft1=getSupportFragmentManager().beginTransaction();
         ft1.replace(R.id.admin_fragment_container,fragment1,"");
         ft1.commit();
@@ -62,22 +71,23 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
 //        recyclerView.setHasFixedSize(true);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        setACourses();
+
     }
-    //////////////////////////// frag
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener=
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.nav_aPending:
-                            PendingFragment fragment1 = new PendingFragment();
+/////////////////////////// this is supposed to be some other fragment but for testing i am using Approved
+                            ApprovedFragment fragment1 = new ApprovedFragment();
                             FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
                             ft1.replace(R.id.admin_fragment_container, fragment1, "");
                             ft1.commit();
                             return true;
-/////////////////////////// this is supposed to be printed fragment but for testing i am using rejected
+/////////////////////////// this is supposed to be printed fragment but for testing i am using Due
                         case R.id.nav_aPrinted:
-                            RejectedFragment fragment2 = new RejectedFragment();
+                            fragment_due fragment2 = new fragment_due();
                             FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();
                             ft2.replace(R.id.admin_fragment_container, fragment2, "");
                             ft2.commit();

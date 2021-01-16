@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -23,15 +24,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-//    //initialize drawer
-//    DrawerLayout drawerLayout;
+
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Button btnLogin;
-//    TextView textView;
     EditText user,pass;
-//    private View Teacher_drawer_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +37,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         sharedPreferences= getSharedPreferences("MySharedPref",MODE_PRIVATE);
         editor = sharedPreferences.edit();
-//        textView= (TextView)findViewById(R.id.tv_forgotPassword);
 
-
-//        //assign variables
-//        drawerLayout= findViewById(R.id.Teacher_drawer_layout);
-        // for activity testing (directly opening activity)
 //        Intent intent = new Intent(MainActivity.this, TeacherCourses.class);
 //        startActivity(intent);
+
 
         user=findViewById(R.id.et_user);
         pass=findViewById(R.id.et_password);
@@ -73,23 +67,15 @@ public class MainActivity extends AppCompatActivity {
                             if(response.isSuccessful()) {
                                 Login res = response.body();
                                 int id= res.getMemberid();
-
-                                Toast.makeText(MainActivity.this, ""+id, Toast.LENGTH_SHORT).show();
-
                                 memberId(id);
-
-
-
-                                Toast.makeText(MainActivity.this, "SuccessFully Login " + res, Toast.LENGTH_SHORT).show();
-
+                                //Toast.makeText(MainActivity.this, "SuccessFully Login " + res, Toast.LENGTH_SHORT).show();
                             }
                             else
-                                Toast.makeText(MainActivity.this, "Invalid Crediential", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Invalid Email or Password", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onFailure(Call<Login> call, Throwable t) {
-                        Toast.makeText(MainActivity.this, "Failed  "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    public void onFailure(Call<Login> call, Throwable t) { Toast.makeText(MainActivity.this, "Failed  "+t.getMessage(), Toast.LENGTH_SHORT).show();
                         Log.d("Failed",t.getMessage());
                     }
                 });
@@ -98,6 +84,39 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+//    private void getUserName(int id){
+//        Call<MembersClass> call = RetrofitClient
+//                .getInstance()
+//                .getApi()
+//                .getUserName(id);
+//        call.enqueue(new Callback<MembersClass>() {
+//            @Override
+//            public void onResponse(Call<MembersClass> call, Response<MembersClass> response) {
+//                if(response.isSuccessful()) {
+//                    MembersClass res = response.body();
+//                    String fname= res.getFirstname();
+//                    String lname = res.getLastname();
+//                    String name= fname + " " + lname;
+//                    Toast.makeText(MainActivity.this, "setting name "+name, Toast.LENGTH_SHORT).show();
+//                    editor.putString("name",name);
+//                    editor.commit();
+//                }
+//                else {
+//                    try {
+//                        Toast.makeText(MainActivity.this, "No Name Found"+response.errorBody().string(), Toast.LENGTH_SHORT).show();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<MembersClass> call, Throwable t) {
+//                Toast.makeText(MainActivity.this, "FAiled"+t.getMessage().toString(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     private void memberId(int  id) {
 
@@ -110,14 +129,24 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<MembersClass> call, Response<MembersClass> response) {
                 if(response.isSuccessful()) {
                     MembersClass res = response.body();
-
+                    String fname= res.getFirstname();
+                    String lname = res.getLastname();
+                    String name= fname + " " + lname;
+                    editor.putString("name",name);
+                    editor.commit();
                     String mType= res.getMembertype();
-
                     if(res.getMembertype().equals("Professor")) {
                         Intent intent = new Intent(MainActivity.this, Teacher_Dashboard.class);
+                        intent.putExtra("id",id);
                         editor.putString("role", res.getMembertype());
+                        int asdf=res.getMemberid();
+                        editor.putInt("id", asdf);
                         editor.commit();
                         startActivity(intent);
+//                        Intent intent = new Intent(MainActivity.this, Teacher_Dashboard.class);
+//                        editor.putString("role", res.getMembertype());
+//                        editor.commit();
+//                        startActivity(intent);
                     }
                     else if(res.getMembertype().equals("Admin")) {
                         Intent intent = new Intent(MainActivity.this, admin_dashboard.class);
@@ -131,14 +160,10 @@ public class MainActivity extends AppCompatActivity {
                         editor.commit();
                         startActivity(intent);
                     }
-
-
-
-                    Toast.makeText(MainActivity.this, "SuccessFull " + mType, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     try {
-                        Toast.makeText(MainActivity.this, "Invalid Crediential"+response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Failed "+response.errorBody().string(), Toast.LENGTH_SHORT).show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -152,22 +177,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
-
-    //CLICK MENU
-//    public void ClickMenu(View view){
-//        // open drawer
-//        drawerLayout.openDrawer(Teacher_drawer_layout);
-//    }
-//    public static void openDrawer(DrawerLayout drawerLayout){
-//        //open drawer layout
-//        drawerLayout.openDrawer(GravityCompat.START);
-//    }
-//
 }
-
 
 class Login
 {

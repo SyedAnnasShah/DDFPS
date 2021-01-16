@@ -14,55 +14,59 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <ImageView
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="match_parent">
+         <ImageView
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:src="@drawable/logodoc"/>
+        </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Course ID: "
-                    android:textSize="25dp"
-                    android:textStyle="bold"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Course : "-->
+<!--                    android:textSize="18dp"-->
+<!--                    android:textStyle="bold"/>-->
 
                 <TextView
                     android:id="@+id/course"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="CS-302PF"
-                    android:textSize="28dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Created:"
-                    android:textSize="25dp"
                     android:textStyle="bold"
-                    />
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="12/03/2020"
-                    android:textSize="28dp"
-                    />
+                    android:textColor="#2196f3"
+                    android:textSize="18dp" />
 
             </LinearLayout>
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Version:"-->
+<!--                    android:textSize="25dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/version"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="28dp"-->
+<!--                    />-->
+<!--            </LinearLayout>-->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,36 +74,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Version:"
-                    android:textSize="25dp"
-                    android:textStyle="bold"
-                    />
-                <TextView
-                    android:id="@+id/version"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="v1"
-                    android:textSize="28dp"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Status:"
-                    android:textSize="25dp"
+                    android:text="Status :"
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     />
                 <TextView
                     android:id="@+id/status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Approved"
-                    android:textSize="28dp"
+                    android:textSize="18dp"
                     />
 
             </LinearLayout>
@@ -111,37 +94,58 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Semester:"
-                    android:textSize="25dp"
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     />
                 <TextView
                     android:id="@+id/semester"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BSCS-4"
-                    android:textSize="28dp"
+                    android:textSize="18dp"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type :"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
                     />
 
             </LinearLayout>
 
         </LinearLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="0dp">
 
         <ImageView
             android:visibility="gone"
             android:id="@+id/iv_teacher"
-            android:layout_width= "80dp"
+            android:layout_width= "60dp"
             android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
             android:src="@drawable/logoedit" />
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/iv_admin"
-                android:layout_width= "80dp"
+         <ImageView
+             android:visibility="gone"
+             android:id="@+id/iv_admin"
+                android:layout_alignParentRight="true"
+                android:layout_width= "60dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/logoprint" />
-        </RelativeLayout>
+        </LinearLayout>
 
 
     </LinearLayout>

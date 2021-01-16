@@ -22,7 +22,7 @@ import retrofit2.Response;
 public class RejectedFragment extends Fragment {
 
     RecyclerView recyclerView;
-    CoursesAdapter adapter;
+    PapersAdapter adapter;
 
     public RejectedFragment() {
         // Required empty public constructor
@@ -44,26 +44,26 @@ public class RejectedFragment extends Fragment {
     }
 
     private void setCourses() {
-        Call<List<course>> call = RetrofitClient
+        Call<List<Papers>> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getCourses("Rejected");
-        call.enqueue(new Callback<List<course>>() {
+                .getPapers("Rejected");
+        call.enqueue(new Callback<List<Papers>>() {
             @Override
-            public void onResponse(Call<List<course>> call, Response<List<course>> response) {
+            public void onResponse(Call<List<Papers>> call, Response<List<Papers>> response) {
                 if(response.isSuccessful()) {
-                    List<course> res = response.body();
+                    List<Papers> res = response.body();
                     Toast.makeText(getContext(), "res"+res.size(), Toast.LENGTH_SHORT).show();
-                    adapter=new CoursesAdapter(getActivity(),res);
+                    adapter=new PapersAdapter(getActivity(),res);
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
                 else
-                    Toast.makeText(getContext(), "Invalid Crediential", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "No Course Found", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<List<course>> call, Throwable t) {
+            public void onFailure(Call<List<Papers>> call, Throwable t) {
                 Toast.makeText(getContext(), "Failed  "+t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.d("Failed",t.getMessage());
             }

@@ -1,33 +1,81 @@
 package com.example.papersdashboard;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class teachercard extends AppCompatActivity {
+    RecyclerView recyclerView;
+    SessionsAdapter adapter;
+    SharedPreferences sharedPreferences;
+    int idofteacher;
+    Button gotoGeneratePaper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teachercard);
+        recyclerView = findViewById(R.id.recycler_session);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        sharedPreferences=getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        idofteacher=sharedPreferences.getInt("id",0);
+        getingSessions();
+        gotoGeneratePaper=findViewById(R.id.btn_gotoGeneratePaper);
+        gotoGeneratePaper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(teachercard.this,Generate_paper.class);
+                startActivity(i);
+            }
+        });
+    }
+    private void getingSessions() {
+        Call<List<Papers>> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getSession(idofteacher);
+        call.enqueue(new Callback<List<Papers>>() {
+            @Override
+            public void onResponse(Call<List<Papers>> call, Response<List<Papers>> response) {
+                if(response.isSuccessful()) {
+                    List<Papers> res = response.body();
+                    adapter=new SessionsAdapter(teachercard.this,res);
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                }
+                else {
+                    Toast.makeText(teachercard.this, "Response Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-//        Spinner spinner_courses = findViewById(R.id.spinner_courses);
-//        String[] items_courses = new String[]{"PF", "DDS", "OOP"};
-//        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items_courses);
-//        spinner_courses.setAdapter(adapter1);
-        Spinner spinner_semester = findViewById(R.id.spinner_semester);
-        String[] items_semester = new String[]{"1", "2", "4"};
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items_semester);
-        spinner_semester.setAdapter(adapter2);
-        Spinner spinner_section = findViewById(R.id.spinner_section);
-        String[] items_section = new String[]{"A", "B", "C"};
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items_section);
-        spinner_section.setAdapter(adapter3);
-        Spinner spinner_discipline = findViewById(R.id.spinner_discipline);
-        String[] items_discipline = new String[]{"BSCS", "BSIT", "MCS"};
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items_discipline);
-        spinner_discipline.setAdapter(adapter4);
+            @Override
+            public void onFailure(Call<List<Papers>> call, Throwable t) {
+                Toast.makeText(teachercard.this, "On Failure"+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+    @Override
+    public void onBackPressed() {
+
     }
 }

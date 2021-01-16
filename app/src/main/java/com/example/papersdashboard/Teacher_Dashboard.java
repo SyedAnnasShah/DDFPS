@@ -24,6 +24,8 @@ public class Teacher_Dashboard extends AppCompatActivity implements NavigationVi
 
     //initialize drawer
     SharedPreferences sh;
+    SharedPreferences sharedPreferences;
+    TextView tv_username;
     SharedPreferences.Editor editor;
     private DrawerLayout drawerLayout;
     ImageView iv_menu;
@@ -33,6 +35,15 @@ public class Teacher_Dashboard extends AppCompatActivity implements NavigationVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher__dashboard);
+        sharedPreferences= getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        drawerLayout= findViewById(R.id.Teacher_drawer_layout);
+        View headerView = navigationView.getHeaderView(0);
+        tv_username = (TextView) headerView.findViewById(R.id.tv_drawerusername);
+        String name= sharedPreferences.getString("name","");
+        name=name.toUpperCase();
+        tv_username.setText(name);
+        int id= getIntent().getIntExtra("id",0);
 
 //        addPaper= findViewById(R.id.img_addPaper);
 //        sh= getSharedPreferences("MySharedPref", MODE_PRIVATE);
@@ -53,17 +64,15 @@ public class Teacher_Dashboard extends AppCompatActivity implements NavigationVi
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-
-        drawerLayout= findViewById(R.id.Teacher_drawer_layout);
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-
         navigationView.setNavigationItemSelectedListener(this);
-
-
-        ApprovedFragment fragment1=new ApprovedFragment();
+        Intent i= getIntent();
+        String code= i.getStringExtra("c");
+        Bundle bundle = new Bundle();
+        bundle.putString("code", code);
+        fragment_due fragment1=new fragment_due();
         FragmentTransaction ft1=getSupportFragmentManager().beginTransaction();
         ft1.replace(R.id.fragment_container,fragment1,"");
+        fragment1.setArguments(bundle);
         ft1.commit();
 
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
@@ -73,7 +82,7 @@ public class Teacher_Dashboard extends AppCompatActivity implements NavigationVi
         addPaper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Teacher_Dashboard.this,Generate_paper.class);
+                Intent intent = new Intent(Teacher_Dashboard.this,teachercard.class);
                 startActivity(intent);
             }
         });
@@ -89,9 +98,8 @@ public class Teacher_Dashboard extends AppCompatActivity implements NavigationVi
                             ft1.replace(R.id.fragment_container, fragment1, "");
                             ft1.commit();
                             return true;
-
-                        case R.id.nav_tPending:
-                            PendingFragment fragment2 = new PendingFragment();
+                        case R.id.nav_tDue:
+                            fragment_due fragment2 = new fragment_due();
                             FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();
                             ft2.replace(R.id.fragment_container, fragment2, "");
                             ft2.commit();
