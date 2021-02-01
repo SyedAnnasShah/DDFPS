@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaperCorrection">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/kucb"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/back"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/kucb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/paper_image"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:src="@drawable/papertemplate" />
+        <ScrollView
+            android:id="@+id/comments_area"
+            android:layout_below="@+id/paper_image"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#CDCBCB">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Q No:1 What is Waterfall model?"/>
+
+        </ScrollView>
+        <TextView
+            android:id="@+id/qnot"
+            android:layout_below="@id/comments_area"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:text="Make it more Detailed/Difficult"
+            android:scrollbars = "vertical"
+            android:textStyle="bold"
+            android:scrollbarSize="15dp" />
+        <Spinner
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/qnot"
+            android:id="@+id/spinnerdifficulty"
+            android:layout_width="130dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="45dp" />
+        <Button
+            android:id="@+id/btn_addComment"
+            android:layout_below="@id/qnot"
+            android:backgroundTint="#2196f3"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Update"
+            />
+        <LinearLayout
+            android:layout_marginTop="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_addComment"
+            android:orientation="horizontal"
+            android:padding="10dp"
+
+            >
+
+            <Button
+                android:id="@+id/b1"
+                android:textColor="#FF0000"
+                android:layout_marginLeft="14dp"
+                android:backgroundTint="#2196f3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="1"
+                android:textSize="25dp"
+                />
+            <Button
+                android:id="@+id/b2"
+                android:layout_marginLeft="14dp"
+                android:backgroundTint="#2196f3"
+                android:layout_width="50dp"
+                android:textColor= "#00ff00"
+                android:layout_height="50dp"
+                android:text="2"
+                android:textSize="25dp"
+                />
+            <Button
+                android:id="@+id/b3"
+                android:layout_marginLeft="14dp"
+                android:textColor= "#00ff00"
+                android:backgroundTint="#2196f3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="3"
+                android:textSize="25dp"
+                />
+            <Button
+                android:id="@+id/b4"
+                android:layout_marginLeft="14dp"
+                android:backgroundTint="#2196f3"
+                android:textColor= "#00ff00"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="4"
+                android:textSize="25dp"
+                />
+
+            <Button
+                android:id="@+id/b5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textColor= "#00ff00"
+                android:layout_marginLeft="14dp"
+                android:backgroundTint="#2196f3"
+                android:text="5"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/b6"
+                android:layout_marginLeft="14dp"
+                android:backgroundTint="#2196f3"
+                android:textColor= "#00ff00"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="6"
+                android:textSize="25dp"
+                />
+
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_approve"
+            android:layout_below="@+id/btn_addComment"
+            android:backgroundTint="#2196f3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Re-Submit"
+            android:layout_marginTop="130dp"/>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
