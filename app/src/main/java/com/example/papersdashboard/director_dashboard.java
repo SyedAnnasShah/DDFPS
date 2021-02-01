@@ -2,36 +2,27 @@ package com.example.papersdashboard;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class director_dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     SharedPreferences sharedPreferences;
-    TextView tv_username;
+    SharedPreferences.Editor editor;
+    TextView nav_tv_username,nav_tv_logout;
 //    RecyclerView recyclerView;
 //    CoursesAdapter adapter;
       ImageView iv_menu;
@@ -42,13 +33,15 @@ public class director_dashboard extends AppCompatActivity implements NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_director_dashboard);
         drawerLayout= findViewById(R.id.director_drawer_layout);
+        setNavigationViewListener();
         sharedPreferences= getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-        tv_username = (TextView) headerView.findViewById(R.id.tv_drawerusername);
+        nav_tv_username = (TextView) headerView.findViewById(R.id.tv_drawerusername);
         String name= sharedPreferences.getString("name","");
         name=name.toUpperCase();
-        tv_username.setText(name);
+        nav_tv_username.setText(name);
         iv_menu=(ImageView)findViewById(R.id.iv_Dmenu);
         iv_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +51,6 @@ public class director_dashboard extends AppCompatActivity implements NavigationV
         });
         navigationView.setNavigationItemSelectedListener(this);
 
-
         fragment_due fragment0 = new fragment_due();
         FragmentTransaction ft0 = getSupportFragmentManager().beginTransaction();
         ft0.replace(R.id.director_fragment_container, fragment0, "");
@@ -67,6 +59,14 @@ public class director_dashboard extends AppCompatActivity implements NavigationV
         BottomNavigationView bottomNavigationView=findViewById(R.id.director_bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(selectedListener);
     }
+
+
+    //drawaer menu items selected
+    private void setNavigationViewListener() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener=
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -102,6 +102,7 @@ public class director_dashboard extends AppCompatActivity implements NavigationV
                     return false;
                 }
             };
+
 //    private void setDCourses() {
 //        Call<List<course>> call = RetrofitClient
 //                .getInstance()
@@ -142,6 +143,18 @@ public class director_dashboard extends AppCompatActivity implements NavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        switch (item.getItemId()) {
+
+            case R.id.nav_logout: {
+                editor.clear();
+                editor.apply();
+                Intent intent = new Intent(director_dashboard.this, MainActivity.class);
+                startActivity(intent);
+                break;
+            }
+        }
+        //close navigation drawer
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

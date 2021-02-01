@@ -1,5 +1,7 @@
 package com.example.papersdashboard;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,6 +25,9 @@ public class PendingFragment extends Fragment {
 
     RecyclerView recyclerView;
     PapersAdapter adapter;
+    SharedPreferences sharedPreferences;
+    int id=0;
+    String role;
 
     public PendingFragment() {
         // Required empty public constructor
@@ -36,8 +41,13 @@ public class PendingFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_p);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        sharedPreferences= getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        role=sharedPreferences.getString("role","");
+        if(role=="Professor"){
+            id=sharedPreferences.getInt("id",0);
+        }
+        Toast.makeText(getContext(), " Role "+role + "ID  "+id, Toast.LENGTH_LONG).show();
         setCourses();
-
         return view;
     }
 
@@ -45,7 +55,7 @@ public class PendingFragment extends Fragment {
         Call<List<Papers>> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getPapers("Pending");
+                .getPapers("Pending",id);
         call.enqueue(new Callback<List<Papers>>() {
             @Override
             public void onResponse(Call<List<Papers>> call, Response<List<Papers>> response) {

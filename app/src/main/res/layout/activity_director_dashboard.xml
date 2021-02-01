@@ -38,11 +38,9 @@
                         android:textColor="#2196f3"
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:textSize="32dp"
-                        />
+                        android:textSize="32dp" />
 
                 </LinearLayout>
-
             <FrameLayout
                 android:id="@+id/director_fragment_container"
                 android:layout_width="match_parent"

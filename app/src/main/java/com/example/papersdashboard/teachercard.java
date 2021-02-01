@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class teachercard extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     int idofteacher;
     Button gotoGeneratePaper;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class teachercard extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         sharedPreferences=getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        back=findViewById(R.id.backBtn);
         idofteacher=sharedPreferences.getInt("id",0);
         getingSessions();
         gotoGeneratePaper=findViewById(R.id.btn_gotoGeneratePaper);
@@ -45,6 +48,12 @@ public class teachercard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i=new Intent(teachercard.this,Generate_paper.class);
                 startActivity(i);
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
@@ -74,8 +83,5 @@ public class teachercard extends AppCompatActivity {
         });
 
     }
-    @Override
-    public void onBackPressed() {
 
-    }
 }

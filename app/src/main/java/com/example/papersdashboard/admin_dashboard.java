@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
 
     private DrawerLayout drawerLayout;
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     TextView tv_username;
 //    RecyclerView recyclerView;
 //    CoursesAdapter adapter;
@@ -41,6 +43,7 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashboard);
         sharedPreferences= getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
         drawerLayout= findViewById(R.id.admin_drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
@@ -144,6 +147,18 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.nav_logout: {
+                editor.clear();
+                editor.apply();
+                Intent intent = new Intent(admin_dashboard.this, MainActivity.class);
+                startActivity(intent);
+                break;
+            }
+        }
+        //close navigation drawer
+        drawerLayout.closeDrawer(GravityCompat.START);
         return false;
     }
 }

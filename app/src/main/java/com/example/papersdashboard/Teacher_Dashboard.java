@@ -36,6 +36,7 @@ public class Teacher_Dashboard extends AppCompatActivity implements NavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher__dashboard);
         sharedPreferences= getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         drawerLayout= findViewById(R.id.Teacher_drawer_layout);
         View headerView = navigationView.getHeaderView(0);
@@ -132,6 +133,18 @@ public class Teacher_Dashboard extends AppCompatActivity implements NavigationVi
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.nav_logout: {
+                editor.clear();
+                editor.apply();
+                Intent intent = new Intent(Teacher_Dashboard.this, MainActivity.class);
+                startActivity(intent);
+                break;
+            }
+        }
+        //close navigation drawer
+        drawerLayout.closeDrawer(GravityCompat.START);
         return false;
     }
 

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences= getSharedPreferences("MySharedPref",MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-//        Intent intent = new Intent(MainActivity.this, TeacherCourses.class);
+//        Intent intent = new Intent(MainActivity.this, Generate_paper.class);
 //        startActivity(intent);
 
 

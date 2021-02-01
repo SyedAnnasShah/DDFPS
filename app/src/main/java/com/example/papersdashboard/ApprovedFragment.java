@@ -1,5 +1,7 @@
 package com.example.papersdashboard;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -22,7 +25,10 @@ import retrofit2.Response;
 public class ApprovedFragment extends Fragment {
     RecyclerView recyclerView;
     PapersAdapter adapter;
-    String code;
+    SharedPreferences sharedPreferences;
+    int id=0;
+    String code, role,Professor="Professor",Director="Director",Admin="Admin";
+    ImageView iv_teacher,iv_admin;
     public ApprovedFragment() {
         // Required empty public constructor
     }
@@ -34,10 +40,18 @@ public class ApprovedFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        sharedPreferences= getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        id=sharedPreferences.getInt("id",0);
+        role=sharedPreferences.getString("role","");
+        if (role.equals(Director)){
+
+        }else if(role.equals(Admin)){
+
+        }else if(role.equals(Professor)){
+            id=sharedPreferences.getInt("id",0);
+        }
+
         setCourses();
-
-
-    // Inflate the layout for this fragment
         return view;
     }
 
@@ -45,7 +59,7 @@ public class ApprovedFragment extends Fragment {
         Call<List<Papers>> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getPapers("Approved");
+                .getPapers("Approved",id);
         call.enqueue(new Callback<List<Papers>>() {
             @Override
             public void onResponse(Call<List<Papers>> call, Response<List<Papers>> response) {

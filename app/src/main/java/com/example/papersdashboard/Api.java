@@ -20,7 +20,8 @@ public interface Api {
     
     @GET("papers")
     Call<List<Papers>> getPapers(
-            @Query("status") String status
+            @Query("status") String status,
+            @Query("id") int id
     );
 
     @GET("Acourses")
@@ -37,7 +38,7 @@ public interface Api {
     );
 
     @GET("getCodeAndName")
-    Call<ResponseBody> getCodeAndName(
+    Call<Courses> getCodeAndName(
             @Query("cid")int id
     );
 
@@ -51,10 +52,10 @@ public interface Api {
             @Query("tid")int id
     );
 
-//    @GET("getUserName")
-//    Call<MembersClass> getUserName(
-//            @Query("id")int id
-//    );
+    @GET("UserName")
+    Call<List<MembersClass>> getUserName(
+            @Query("id")int id
+    );
 
     @FormUrlEncoded
     @POST("AddQuestion")
@@ -63,7 +64,7 @@ public interface Api {
             @Field("questionno")String questionno,
             @Field("questiondata")String questiondata,
             @Field("difficulty")String difficulty,
-          //  @Field("image") String image,
+            @Field("image") String image,
             @Field("paperid")int paperid,
             @Field("status")String status
     );

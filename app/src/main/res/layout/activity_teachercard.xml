@@ -5,7 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".teachercard">
+
     <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/kucb"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/back"/>
+
+    </LinearLayout>
+    <LinearLayout
+
+        android:layout_below="@+id/kucb"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:orientation="vertical">
@@ -21,33 +36,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/sessions_layout"
-            android:background="#CDCBCB"
             android:id="@+id/recycler_session"/>
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="350dp"
         android:orientation="vertical">
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Type"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            />
-        <Spinner
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/spinner_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

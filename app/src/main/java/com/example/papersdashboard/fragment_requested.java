@@ -1,5 +1,7 @@
 package com.example.papersdashboard;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 import java.util.List;
@@ -21,7 +24,9 @@ import retrofit2.Response;
 public class fragment_requested extends Fragment {
     RecyclerView recyclerView;
     PapersAdapter adapter;
-
+    SharedPreferences sharedPreferences;
+    int id=0;
+    String role,Professor="Professor";
     public fragment_requested() {
         // Required empty public constructor
     }
@@ -34,6 +39,14 @@ public class fragment_requested extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_req);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        sharedPreferences= getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        role=sharedPreferences.getString("role","");
+        if(role.equals(Professor)){
+            id=sharedPreferences.getInt("id",0);
+            Toast.makeText(getContext(), "if  Role "+role + "ID  "+id, Toast.LENGTH_LONG).show();
+        }
+        else
+            Toast.makeText(getContext(), "else Role "+role + "ID  "+id, Toast.LENGTH_LONG).show();
         setCourses();
 
 
@@ -44,7 +57,7 @@ public class fragment_requested extends Fragment {
         Call<List<Papers>> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getPapers("Requested");
+                .getPapers("Requested",id);
         call.enqueue(new Callback<List<Papers>>() {
             @Override
             public void onResponse(Call<List<Papers>> call, Response<List<Papers>> response) {
