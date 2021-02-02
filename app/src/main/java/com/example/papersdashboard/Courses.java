@@ -1,13 +1,22 @@
 package com.example.papersdashboard;
 
 public class Courses {
-    int courseid;
+    int courseid,crs;
     String coursename , coursecode;
 
-    public Courses(int courseid, String coursename, String coursecode) {
+    public Courses(int courseid, String coursename, String coursecode, int crs) {
         this.courseid = courseid;
         this.coursename = coursename;
         this.coursecode = coursecode;
+        this.crs=crs;
+    }
+
+    public int getCrs() {
+        return crs;
+    }
+
+    public void setCrs(int crs) {
+        this.crs = crs;
     }
 
     public int getCourseid() {

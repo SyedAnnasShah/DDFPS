@@ -2,9 +2,9 @@ package com.example.papersdashboard;
 
 public class Papers {
     int paperid, courseid, teacherid;
-    String createddate, status, type , semester;
+    String createddate, status, type , semester, coursename;
 
-    public Papers(int paperid, int courseid, int teacherid, String createddate, String status, String type, String semester) {
+    public Papers(int paperid, int courseid, int teacherid, String createddate, String status, String type, String semester, String coursename) {
         this.paperid = paperid;
         this.courseid = courseid;
         this.teacherid = teacherid;
@@ -12,6 +12,15 @@ public class Papers {
         this.status = status;
         this.type = type;
         this.semester = semester;
+        this.coursename = coursename;
+    }
+
+    public String getCoursename() {
+        return coursename;
+    }
+
+    public void setCoursename(String coursename) {
+        this.coursename = coursename;
     }
 
     public int getPaperid() {

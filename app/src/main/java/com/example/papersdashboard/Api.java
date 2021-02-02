@@ -66,6 +66,7 @@ public interface Api {
             @Field("difficulty")String difficulty,
             @Field("image") String image,
             @Field("paperid")int paperid,
-            @Field("status")String status
+            @Field("status")String status,
+            @Field("marks")int marks
     );
 }

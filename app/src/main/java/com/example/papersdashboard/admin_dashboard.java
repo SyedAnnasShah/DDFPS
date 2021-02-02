@@ -50,7 +50,6 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
         tv_username = (TextView) headerView.findViewById(R.id.tv_drawerusername);
         String name= sharedPreferences.getString("name","");
         name=name.toUpperCase();
-        Toast.makeText(this, "name is   "+name, Toast.LENGTH_LONG).show();
         tv_username.setText(name);
         iv_menu=(ImageView)findViewById(R.id.iv_Amenu);
         iv_menu.setOnClickListener(new View.OnClickListener() {

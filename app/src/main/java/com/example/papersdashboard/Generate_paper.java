@@ -28,6 +28,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -35,6 +37,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Generate_paper extends AppCompatActivity {
+
+    List<Questions> questions = new ArrayList<Questions>();
+    String Q="Q : ",Qno;
+    int questionNumberBeingAdded;
     TextView addedques, hard_added,medium_added,easy_added,tv_coursename,tv_papertype,tv_credithours,tv_section;
     EditText addingques;
     String questionDifficulty="" ,storingImage="" , section;
@@ -46,7 +52,7 @@ public class Generate_paper extends AppCompatActivity {
     int e=0,m=0,h=0;
     String n;
     String typ, sem, cname;
-    int cidd, pid;
+    int cidd, pid, QuestionBeingAdded=0;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -61,20 +67,53 @@ public class Generate_paper extends AppCompatActivity {
         Intent intent= getIntent();
         typ=intent.getStringExtra("type");
         sem=intent.getStringExtra("semester");
-        cname=intent.getStringExtra("coursename");
         cidd=intent.getIntExtra("courseid",0);
         pid=intent.getIntExtra("paperid",0);
+        //cname=intent.getStringExtra("coursename");
+
+
+        tv_coursename=findViewById(R.id.tv_coursename);
+        tv_credithours=findViewById(R.id.tv_credithours);
+        //tv_credithours.setText("4 Credit Hours");
+
+        Call<Courses> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getCodeAndName(cidd);
+        call.enqueue(new Callback<Courses>() {
+            @Override
+            public void onResponse(Call<Courses> call, Response<Courses> response) {
+                if(response.isSuccessful()) {
+                    Courses res=response.body();
+                    cname = res.getCoursename();
+                    int crs = res.getCrs();
+                    tv_coursename.setText(cname);
+                    String StringCRS=String.valueOf(crs);
+                    tv_credithours.setText(StringCRS);
+                }
+                else {
+                    Toast.makeText(Generate_paper.this, "No Response Found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Courses> call, Throwable t) {
+                Toast.makeText(Generate_paper.this, "Failed"+t.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         hard_added=findViewById(R.id.tv_hard_added);
         medium_added=findViewById(R.id.tv_medium_added);
         easy_added=findViewById(R.id.tv_easy_added);
 
-        tv_coursename=findViewById(R.id.tv_coursename);
-        tv_coursename.setText(cname);
+        //tv_coursename=findViewById(R.id.tv_coursename);
+        //tv_coursename.setText(cname);
+        // it was showing null here cause this code is executed at last so i shifted the set course name above in call
+
         tv_papertype=findViewById(R.id.tv_papertype);
         tv_papertype.setText(typ);
-        tv_credithours=findViewById(R.id.tv_credithours);
-        tv_credithours.setText("4 Credit Hours");
+        //tv_credithours=findViewById(R.id.tv_credithours);
+        //tv_credithours.setText("4 Credit Hours");
         tv_section=findViewById(R.id.tv_section);
         setCourseCode(cidd);
         iv_image=findViewById(R.id.iv_image);
@@ -139,6 +178,9 @@ public class Generate_paper extends AppCompatActivity {
                 }else if(storingImage==null){
                     storingImage="";
                 }
+
+
+
                 if(questionDifficulty=="easy"){
                     e++;
                     easy_added.setText(String.valueOf(e));
@@ -153,7 +195,19 @@ public class Generate_paper extends AppCompatActivity {
                 n = addingques.getText().toString();
                 addedques.setText(o+"\n"+n);
                 addingques.setText("");
-                AddQuestion(n,storingImage);
+                //AddQuestion(n,storingImage);
+                Qno = Q.substring(0,1)+ questionNumberBeingAdded +Q.substring(1,3);
+                questions.set(QuestionBeingAdded,new Questions(
+                        1,
+                        pid,
+                        3,
+                        n,
+                        questionDifficulty,
+                        storingImage,
+                        Qno
+                        ));
+                QuestionBeingAdded++;
+
             }
         });
         btn_generatePaper =findViewById(R.id.btn_generatePaper);
@@ -172,39 +226,41 @@ public class Generate_paper extends AppCompatActivity {
     }
 
 
-    private void AddQuestion(String b,String i){
+    private void AddQuestion(){
 
-        Call<ResponseBody> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .AddQuestion(1,"1",b,questionDifficulty,i,pid,"NULL");
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.isSuccessful()) {
+        for (int i=0;i<questions.size();i++) {
 
-                    try {
-                        String res=response.body().string();
-                    } catch (IOException ioException) {
-                        ioException.printStackTrace();
+            Call<ResponseBody> call = RetrofitClient
+                    .getInstance()
+                    .getApi()
+                    .AddQuestion(questions.get(i).paperid, "1", questions.get(i).questiondata, questions.get(i).difficulty, questions.get(i).image, questions.get(i).paperid, "NULL",questions.get(i).marks);
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.isSuccessful()) {
+
+                        try {
+                            String res = response.body().string();
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
+
+                    } else {
+                        try {
+                            Toast.makeText(Generate_paper.this, "Failed " + response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-
                 }
-                else {
-                    try {
-                        Toast.makeText(Generate_paper.this, "Failed "+response.errorBody().string(), Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(Generate_paper.this, "Failed  "+t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.d("Failed",t.getMessage());
-            }
-        });
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(Generate_paper.this, "Failed  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d("Failed", t.getMessage());
+                }
+            });
+        }
     }// on create body
 
     private String convertToString()

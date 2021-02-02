@@ -1,15 +1,25 @@
 package com.example.papersdashboard;
 
 public class Questions {
-    int paperquestionid, paperid;
-    String questiondata, difficulty, image;
+    int paperquestionid, paperid, marks;
+    String questiondata, difficulty, image, questionno;
 
-    public Questions(int paperquestionid, int paperid, String questiondata, String difficulty, String image) {
+    public Questions(int paperquestionid, int paperid, int marks, String questiondata, String difficulty, String image, String questionno) {
         this.paperquestionid = paperquestionid;
         this.paperid = paperid;
+        this.marks = marks;
         this.questiondata = questiondata;
         this.difficulty = difficulty;
         this.image = image;
+        this.questionno = questionno;
+    }
+
+    public String getQuestionno() {
+        return questionno;
+    }
+
+    public void setQuestionno(String questionno) {
+        this.questionno = questionno;
     }
 
     public int getPaperquestionid() {
@@ -26,6 +36,14 @@ public class Questions {
 
     public void setPaperid(int paperid) {
         this.paperid = paperid;
+    }
+
+    public int getMarks() {
+        return marks;
+    }
+
+    public void setMarks(int marks) {
+        this.marks = marks;
     }
 
     public String getQuestiondata() {
@@ -52,3 +70,4 @@ public class Questions {
         this.image = image;
     }
 }
+

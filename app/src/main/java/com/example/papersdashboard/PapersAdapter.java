@@ -26,9 +26,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class PapersAdapter extends RecyclerView.Adapter<PapersAdapter.MyViewHolder>   {
     private List<Papers> items;
     private Context context;
-    String code="";
+    String code="",CourseName;
     String CourseCode;
-
     public PapersAdapter(Context context, List<Papers> item) {
         this.context = context;
         this.items=item;
@@ -125,12 +124,10 @@ public class PapersAdapter extends RecyclerView.Adapter<PapersAdapter.MyViewHold
                     Intent intent = new Intent(context, Generate_paper.class);
                     intent.putExtra("type",items.get(position).getType());
                     intent.putExtra("semester",items.get(position).getSemester());
-                    intent.putExtra("coursename",code);
                     intent.putExtra("courseid",items.get(position).getCourseid());
                     intent.putExtra("paperid",items.get(position).getPaperid());
                     context.startActivity(intent);
                 }
-                Toast.makeText(context, "Professor Image View", Toast.LENGTH_SHORT).show();
             }
         });
     }
