@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CDCBCB"
     tools:context=".Teacher_Dashboard">
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -45,10 +46,17 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@color/white"
+                    android:visibility="gone"
                     android:src="@drawable/logoadd" />
 
             </LinearLayout>
 
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_teachercourse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/teachercourses_layout" />
 
         </LinearLayout>
 
@@ -79,12 +87,13 @@
         </RelativeLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bottom_navigation"
-        app:menu="@menu/tecaher_menu_nav"
-        android:background="?android:attr/windowBackground"/>
+    //bottom navigation accepted, due etc
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/bottom_navigation"-->
+<!--        app:menu="@menu/tecaher_menu_nav"-->
+<!--        android:background="?android:attr/windowBackground"/>-->
 
 </RelativeLayout>

@@ -14,6 +14,7 @@
         android:layout_height="50dp">
 
         <TextView
+            android:id="@+id/temporary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Generate Paper"
@@ -26,7 +27,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/back"/>
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -47,188 +47,217 @@
                 android:textSize="18dp"
                 android:textColor="#2196f3"
                 android:layout_centerHorizontal="true"/>
-            <RelativeLayout
-                android:id="@+id/LayoutCourseDeatils"
-                android:layout_below="@+id/tv_coursename"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp">
-                <TextView
-                    android:id="@+id/tv_section"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Course code"
-                    android:layout_marginLeft="10dp"
-                    android:layout_alignParentLeft="true"/>
-                <TextView
-                    android:id="@+id/tv_papertype"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="type "
-                    android:layout_centerHorizontal="true" />
-                <TextView
-                    android:id="@+id/tv_credithours"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Credit hours"
-                    android:layout_marginRight="10dp"
-                    android:layout_alignParentRight="true" />
-            </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/LayoutQuestionsDifficulty"
-            android:layout_below="@+id/LayoutCourseDeatils"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn_paperdetails"
+            android:onClick="ShowPopup"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/tv_hard_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hard:"
-                    android:textColor="#FF0000"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
-                    android:layout_alignParentLeft="true"/>
-                <TextView
-                    android:id="@+id/tv_hard_added"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="/"/>
-                <TextView
-                    android:id="@+id/tv_hard_limit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal"
-                android:layout_marginLeft="80dp">
-            <TextView
-                android:id="@+id/Medium_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Medium:"
-                android:textColor="	#FFFF00"
-                 />
-            <TextView
-                android:id="@+id/tv_medium_added"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="/"/>
-            <TextView
-                android:id="@+id/tv_medium_limit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal"
-                android:layout_marginLeft="70dp">
-            <TextView
-                android:id="@+id/Easy_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Easy:"
-                android:textColor="#008000"
-                android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true" />
-            <TextView
-                android:id="@+id/tv_easy_added"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="/"/>
-            <TextView
-                android:id="@+id/tv_easy_limit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2"/>
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_below="@id/tv_coursename"
+            android:layout_centerInParent="true"
+            android:text="Show Paper Details"
+            android:backgroundTint="#2196f3"
+            />
 
-        <RelativeLayout
-            android:id="@+id/LayoutTotalMarksSummary"
-            android:layout_below="@+id/LayoutQuestionsDifficulty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_totalmarks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Marks Summary :"
-                android:textStyle="bold"
-                android:layout_alignParentLeft="true"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:paddingLeft="10dp"/>
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/LayoutCourseDeatils"-->
+<!--                android:layout_below="@+id/tv_coursename"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="5dp">-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_section"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Course code"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_alignParentLeft="true"/>-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_papertype"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="type "-->
+<!--                    android:layout_centerHorizontal="true" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_credithours"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Credit hours"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:layout_alignParentRight="true" />-->
+<!--            </RelativeLayout>-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/LayoutQuestionsDifficulty"-->
+<!--            android:layout_below="@+id/LayoutCourseDeatils"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="5dp">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="5dp"-->
+<!--                android:orientation="horizontal">-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_hard_label"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Hard:"-->
+<!--                    android:textColor="#FF0000"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_alignParentLeft="true"/>-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_hard_added"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="0"/>-->
 <!--                <TextView-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"-->
 <!--                    android:text="/"/>-->
 <!--                <TextView-->
+<!--                    android:id="@+id/tv_hard_limit"-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="0"/>-->
-            </LinearLayout>
-        </RelativeLayout>
-
+<!--                    android:text="2"/>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="5dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginLeft="80dp">-->
+<!--            <TextView-->
+<!--                android:id="@+id/Medium_label"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Medium:"-->
+<!--                android:textColor="	#FFFF00"-->
+<!--                 />-->
+<!--            <TextView-->
+<!--                android:id="@+id/tv_medium_added"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="0"/>-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="/"/>-->
+<!--            <TextView-->
+<!--                android:id="@+id/tv_medium_limit"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="2"/>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="5dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginLeft="70dp">-->
+<!--            <TextView-->
+<!--                android:id="@+id/Easy_label"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Easy:"-->
+<!--                android:textColor="#008000"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_alignParentRight="true" />-->
+<!--            <TextView-->
+<!--                android:id="@+id/tv_easy_added"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="0"/>-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="/"/>-->
+<!--            <TextView-->
+<!--                android:id="@+id/tv_easy_limit"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="2"/>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/LayoutTotalMarksSummary"-->
+<!--            android:layout_below="@+id/LayoutQuestionsDifficulty"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="10dp">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
+<!--            <TextView-->
+<!--                android:id="@+id/tv_totalmarks"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Marks Summary :"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_alignParentLeft="true"/>-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_totalmarkssummary"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="0"-->
+<!--                    android:paddingLeft="10dp"/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text=" / "/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="60"/>-->
+<!--            </LinearLayout>-->
+<!--        </RelativeLayout>-->
         <ScrollView
+
             android:id="@+id/svAdded"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_below="@+id/LayoutTotalMarksSummary"
-            android:layout_marginTop="-2dp"
+            android:layout_height="350dp"
+            android:layout_below="@+id/btn_paperdetails"
+            android:layout_marginTop="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
             android:background="#CDCBCB">
 
-            <TextView
-                android:id="@+id/addedques"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_questions"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/svAdded"
-                android:padding="10dp"
-                android:scrollbarSize="15dp"
-                android:scrollbars="vertical" />
+                android:layout_height="match_parent"
+                tools:listitem="@layout/questionadded_layout" />
+
+        </RelativeLayout>
         </ScrollView>
+        <ImageView
+            android:id="@+id/iv_addBullet"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/svAdded"
+            android:src="@drawable/bullets"/>
+        <ImageView
+            android:id="@+id/iv_addImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/svAdded"
+            android:layout_marginLeft="45dp"
+            android:src="@drawable/imageicon"/>
 
         <ScrollView
-        android:layout_below="@+id/svAdded"
+        android:layout_below="@+id/iv_addBullet"
         android:id="@+id/svAdd"
         android:layout_width="300dp"
         android:layout_height="150dp"
+        android:layout_marginTop="10dp"
         android:background="#CDCBCB">
         <EditText
             android:id="@+id/addingques"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="150dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:scrollbars = "vertical"
             android:scrollbarSize="15dp" />
     </ScrollView>
@@ -236,15 +265,23 @@
         android:id="@+id/iv_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_below="@+id/svAdded"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/iv_addBullet"
         android:layout_alignParentRight="true"
         />
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/difficultyimagequestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_below="@+id/svAdd"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Difficulty"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
     <Spinner
         android:layout_alignParentLeft="true"
         android:id="@+id/spinnerdifficulty"
@@ -252,30 +289,43 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
         android:layout_height="45dp" />
-    <Button
-        android:layout_centerInParent="true"
-        android:padding="5dp"
-        android:id="@+id/btn_addimage"
-        android:backgroundTint="#2196f3"
-        android:layout_width="120dp"
-        android:layout_height="55dp"
-        android:text="Add Image" />
-
-    <Button
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="5dp"
-        android:id="@+id/btn_addques"
-        android:backgroundTint="#2196f3"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:text="Add Question" />
-    </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marks"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/et_EnterMarks"
+            android:layout_centerInParent="true"
+            android:digits="0123456789"
+            android:inputType="number"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"/>
+<!--    <Button-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:padding="5dp"-->
+<!--        android:id="@+id/btn_addimage"-->
+<!--        android:backgroundTint="#2196f3"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="55dp"-->
+<!--        android:text="Add Image" />-->
+    </LinearLayout>
+        <Button
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/difficultyimagequestion"
+            android:layout_marginRight="5dp"
+            android:id="@+id/btn_addques"
+            android:backgroundTint="#2196f3"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:text="Add Question" />
     <Button
         android:id="@+id/btn_generatePaper"
+        android:layout_below="@+id/btn_addques"
         android:backgroundTint="#2196f3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Generate"
-        android:layout_below="@+id/difficultyimagequestion"/>
+        android:text="Generate" />
     </RelativeLayout>
 </RelativeLayout>

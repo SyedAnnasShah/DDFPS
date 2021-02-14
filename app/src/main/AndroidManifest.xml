@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PapersDashboard"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PaperCorrection"></activity>
+        <activity android:name=".Announcement"></activity>
+        <activity android:name=".ShowPaperDetails" />
+        <activity android:name=".PaperCorrection" />
         <activity android:name=".YourCourses" />
         <activity android:name=".AddComments" />
         <activity android:name=".Generate_paper" />

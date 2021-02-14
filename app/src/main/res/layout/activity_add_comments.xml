@@ -7,7 +7,7 @@
     tools:context=".AddComments">
     <LinearLayout
         android:orientation="horizontal"
-        android:id="@+id/kucb"
+        android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -17,14 +17,10 @@
             android:src="@drawable/back"/>
     </LinearLayout>
    <RelativeLayout
-       android:layout_below="@id/kucb"
+       android:layout_below="@id/layout_1"
        android:layout_width="match_parent"
        android:layout_height="match_parent">
-       <ImageView
-           android:id="@+id/paper_image"
-           android:layout_width="400dp"
-           android:layout_height="400dp"
-           android:src="@drawable/papertemplate" />
+
        <TextView
            android:id="@+id/qnot"
            android:layout_below="@+id/paper_image"
@@ -43,34 +39,30 @@
            android:background="#CDCBCB">
 
        </ScrollView>
-        <CheckBox
-            android:layout_below="@id/comments_area"
-            android:layout_marginLeft="80dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-       <TextView
+       <Button
+           android:id="@+id/btn_AcceptQuestion"
+           android:layout_below="@id/comments_area"
+           android:backgroundTint="#2196f3"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_below="@id/comments_area"
-           android:text="Reject"
-           android:textStyle="bold"
-           android:layout_marginTop="10dp"
-           android:textSize="18dp"
-           android:layout_marginLeft="120dp"/>
+           android:layout_marginLeft="200dp"
+           android:text="Accept"
+           />
        <Button
-           android:id="@+id/btn_addComment"
+           android:id="@+id/btn_RejectQuestion"
            android:layout_below="@id/comments_area"
            android:backgroundTint="#2196f3"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentRight="true"
-           android:text="ADD"
+           android:paddingRight="20dp"
+           android:text="Reject"
            />
        <LinearLayout
            android:layout_marginTop="15dp"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:layout_below="@+id/btn_addComment"
+           android:layout_below="@+id/btn_RejectQuestion"
            android:orientation="horizontal"
            android:padding="10dp"
 
@@ -133,7 +125,7 @@
 
        <Button
            android:id="@+id/btn_approve"
-           android:layout_below="@+id/btn_addComment"
+           android:layout_below="@+id/btn_RejectQuestion"
            android:backgroundTint="#2196f3"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"

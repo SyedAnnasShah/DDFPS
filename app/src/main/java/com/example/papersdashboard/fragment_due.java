@@ -44,7 +44,6 @@ public class fragment_due extends Fragment {
         role=sharedPreferences.getString("role","");
         if(role.equals(Professor)){
             id=sharedPreferences.getInt("id",0);
-            Toast.makeText(getContext(), " Role "+role + "ID  "+id, Toast.LENGTH_LONG).show();
         }else
             Toast.makeText(getContext(), " Role "+role + "ID  "+id, Toast.LENGTH_LONG).show();
 

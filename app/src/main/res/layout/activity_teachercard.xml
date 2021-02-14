@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:id="@+id/kucb"
+        android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -20,7 +20,7 @@
     </LinearLayout>
     <LinearLayout
 
-        android:layout_below="@+id/kucb"
+        android:layout_below="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:orientation="vertical">

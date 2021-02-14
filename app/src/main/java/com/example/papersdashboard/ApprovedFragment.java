@@ -65,7 +65,6 @@ public class ApprovedFragment extends Fragment {
             public void onResponse(Call<List<Papers>> call, Response<List<Papers>> response) {
                     if(response.isSuccessful()) {
                         List<Papers> res = response.body();
-                        Toast.makeText(getContext(), "res"+res.size(), Toast.LENGTH_SHORT).show();
                         adapter=new PapersAdapter(getActivity(),res);
                         recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();

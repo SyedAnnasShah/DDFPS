@@ -24,6 +24,16 @@ public interface Api {
             @Query("id") int id
     );
 
+    @GET("papersForTeacher")
+    Call<List<Papers>> getPapersForTeacher(
+            @Query("id") int id
+    );
+
+    @GET("paperViaPaperID")
+    Call<Papers> getPaperViaPaperID(
+            @Query("pid") int id
+    );
+
     @GET("Acourses")
     Call<List<Papers>> getACourses(
     );
@@ -60,13 +70,13 @@ public interface Api {
     @FormUrlEncoded
     @POST("AddQuestion")
     Call<ResponseBody> AddQuestion(
-            @Field("questionid")int questionid,
+           // @Field("questionid")int questionid,
             @Field("questionno")String questionno,
             @Field("questiondata")String questiondata,
             @Field("difficulty")String difficulty,
             @Field("image") String image,
             @Field("paperid")int paperid,
-            @Field("status")String status,
+            //@Field("status")String status,
             @Field("marks")int marks
     );
 }

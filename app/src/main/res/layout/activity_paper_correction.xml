@@ -7,7 +7,7 @@
     tools:context=".PaperCorrection">
     <LinearLayout
         android:orientation="horizontal"
-        android:id="@+id/kucb"
+        android:id="@+id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -19,7 +19,7 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_below="@id/kucb"
+        android:layout_below="@id/layout_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
@@ -58,7 +58,7 @@
             android:layout_marginTop="10dp"
             android:layout_height="45dp" />
         <Button
-            android:id="@+id/btn_addComment"
+            android:id="@+id/btn_RejectQuestion"
             android:layout_below="@id/qnot"
             android:backgroundTint="#2196f3"
             android:layout_marginTop="10dp"
@@ -71,7 +71,7 @@
             android:layout_marginTop="45dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_addComment"
+            android:layout_below="@+id/btn_RejectQuestion"
             android:orientation="horizontal"
             android:padding="10dp"
 
@@ -146,7 +146,7 @@
 
         <Button
             android:id="@+id/btn_approve"
-            android:layout_below="@+id/btn_addComment"
+            android:layout_below="@+id/btn_RejectQuestion"
             android:backgroundTint="#2196f3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

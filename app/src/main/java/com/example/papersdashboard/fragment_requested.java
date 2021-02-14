@@ -43,10 +43,7 @@ public class fragment_requested extends Fragment {
         role=sharedPreferences.getString("role","");
         if(role.equals(Professor)){
             id=sharedPreferences.getInt("id",0);
-            Toast.makeText(getContext(), "if  Role "+role + "ID  "+id, Toast.LENGTH_LONG).show();
         }
-        else
-            Toast.makeText(getContext(), "else Role "+role + "ID  "+id, Toast.LENGTH_LONG).show();
         setCourses();
 
 
@@ -63,7 +60,6 @@ public class fragment_requested extends Fragment {
             public void onResponse(Call<List<Papers>> call, Response<List<Papers>> response) {
                 if(response.isSuccessful()) {
                     List<Papers> res = response.body();
-                    Toast.makeText(getContext(), "res"+res.size(), Toast.LENGTH_SHORT).show();
                     adapter=new PapersAdapter(getActivity(),res);
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
