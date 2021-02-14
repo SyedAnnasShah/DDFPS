@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment_requested"
+    tools:context=".fragment_review"
     android:background="#CDCBCB">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_req"
+        android:id="@+id/recycler_rev"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/courses"

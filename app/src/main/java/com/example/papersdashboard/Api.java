@@ -79,4 +79,12 @@ public interface Api {
             //@Field("status")String status,
             @Field("marks")int marks
     );
+    @FormUrlEncoded
+    @POST("AddQuestion")
+    Call<ResponseBody> CreatePaperObject(
+            // @Field("questionid")int questionid,
+            @Field("qd")QData qd,
+            //@Field("status")String status,
+            @Field("pid")int pid
+    );
 }

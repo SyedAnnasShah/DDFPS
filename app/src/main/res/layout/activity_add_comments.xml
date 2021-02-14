@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddComments">
+
     <LinearLayout
         android:orientation="horizontal"
-        android:id="@+id/layout_1"
+        android:id="@+id/layout_header"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -15,29 +16,65 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/back"/>
+        <TextView
+            android:id="@+id/temporary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Review"
+            android:textColor="#2196f3"
+            android:layout_marginLeft="100dp"
+            android:textStyle="bold"
+            android:textSize="32dp" />
     </LinearLayout>
+    <ScrollView
+        android:id="@+id/sv_questionddetails"
+        android:layout_below="@id/layout_header"
+        android:layout_width="match_parent"
+        android:background="#8888"
+        android:layout_height="300dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="300dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_questionaddeddetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Question"/>
+        <TextView
+            android:id="@+id/tv_questionaddeddificulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text=" easyy" />
+        <TextView
+            android:id="@+id/tv_questionaddedmarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Marks: "/>
+        <ImageView
+            android:id="@+id/iv_questionaddedimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    </ScrollView>
    <RelativeLayout
-       android:layout_below="@id/layout_1"
        android:layout_width="match_parent"
+       android:layout_below="@id/sv_questionddetails"
+       android:layout_marginTop="15dp"
        android:layout_height="match_parent">
 
-       <TextView
-           android:id="@+id/qnot"
-           android:layout_below="@+id/paper_image"
-           android:layout_width="match_parent"
-           android:layout_height="40dp"
-           android:padding="10dp"
-           android:text="Q No:2 Describe Types of Protocol Models?"
-           android:scrollbars = "vertical"
-           android:textStyle="bold"
-           android:scrollbarSize="15dp" />
        <ScrollView
            android:id="@+id/comments_area"
-           android:layout_below="@id/qnot"
            android:layout_width="match_parent"
-           android:layout_height="100dp"
+           android:layout_height="200dp"
            android:background="#CDCBCB">
-
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
        </ScrollView>
        <Button
            android:id="@+id/btn_AcceptQuestion"
@@ -69,6 +106,7 @@
           >
 
            <Button
+               android:id="@+id/btn_q1"
                android:layout_marginLeft="14dp"
                android:backgroundTint="#2196f3"
                android:layout_width="50dp"
@@ -77,6 +115,7 @@
                android:textSize="25dp"
               />
            <Button
+               android:id="@+id/btn_q2"
                android:layout_marginLeft="14dp"
                android:backgroundTint="#2196f3"
                android:layout_width="50dp"
@@ -85,6 +124,7 @@
                android:textSize="25dp"
                />
            <Button
+               android:id="@+id/btn_q3"
                android:layout_marginLeft="14dp"
                android:backgroundTint="#2196f3"
                android:layout_width="50dp"
@@ -93,6 +133,7 @@
                android:textSize="25dp"
                />
            <Button
+               android:id="@+id/btn_q4"
                android:layout_marginLeft="14dp"
                android:backgroundTint="#2196f3"
                android:layout_width="50dp"
@@ -100,8 +141,8 @@
                android:text="4"
                android:textSize="25dp"
                />
-
            <Button
+               android:id="@+id/btn_q5"
                android:layout_width="50dp"
                android:layout_height="50dp"
                android:layout_marginLeft="14dp"
@@ -110,6 +151,7 @@
                android:textSize="25dp" />
 
            <Button
+               android:id="@+id/btn_q6"
                android:layout_marginLeft="14dp"
                android:backgroundTint="#2196f3"
                android:layout_width="50dp"

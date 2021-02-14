@@ -5,9 +5,9 @@
         android:icon="@drawable/pending"
         android:title="Due" />
     <item
-        android:id="@+id/nav_dRequested"
+        android:id="@+id/nav_dReview"
         android:icon="@drawable/requested"
-        android:title="Requested" />
+        android:title="Review" />
     <item
         android:id="@+id/nav_dApproved"
         android:icon="@drawable/approved"

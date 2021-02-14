@@ -38,7 +38,10 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+class QData{
+    ArrayList<Questions> q =new ArrayList<Questions>();
+    int pid=0;
+}
 public class Generate_paper extends AppCompatActivity {
     Dialog myDialog;
     ArrayList<Questions> questions = new ArrayList<Questions>();
@@ -73,7 +76,6 @@ public class Generate_paper extends AppCompatActivity {
         recycler_questions.setLayoutManager(new LinearLayoutManager(this));
 
         myDialog = new Dialog(this);
-
         Window window = myDialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
 
@@ -261,9 +263,10 @@ public class Generate_paper extends AppCompatActivity {
         btn_generatePaper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddQuestions();
-                changeStatusOfpaperToReview(pid);
+                AddQuestions(); //here only questions were being save via loop
+                changePaperStatusToreview(pid);
 
+                //CreateQuestionObject(); // here list of question is being saved and status of paper is also being set as review from Due
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -272,6 +275,47 @@ public class Generate_paper extends AppCompatActivity {
                 onBackPressed();
             }
         });
+    }
+
+    private void changePaperStatusToreview(int pid) {
+
+    }
+
+    private void CreateQuestionObject() {
+        QData qd=new QData();
+        qd.q=questions;
+        qd.pid=pid;
+
+        Call<ResponseBody> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .CreatePaperObject(qd,pid);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        String res = response.body().string();
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+
+                } else {
+                    try {
+                        Toast.makeText(Generate_paper.this, "Failed " + response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(Generate_paper.this, "Failed  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("Failed", t.getMessage());
+            }
+        });
+
     }
 
 
@@ -312,10 +356,6 @@ public class Generate_paper extends AppCompatActivity {
             Toast.makeText(this, "DONE", Toast.LENGTH_SHORT).show();
         }
     }// on create body
-
-    private void  changeStatusOfpaperToReview(int pid){
-
-    }
 
     private String convertToString()
     {
@@ -368,8 +408,8 @@ public class Generate_paper extends AppCompatActivity {
             }
         });
     }
-    public void ShowPopup(View v) {
 
+    public void ShowPopup(View v) {
         Button btnHide;
         myDialog.setContentView(R.layout.paperdetails_layout);
         btnHide =(Button) myDialog.findViewById(R.id.btn_hide);

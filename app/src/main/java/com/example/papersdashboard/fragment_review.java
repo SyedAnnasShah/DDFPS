@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 import java.util.List;
@@ -21,22 +20,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class fragment_requested extends Fragment {
+public class fragment_review extends Fragment {
     RecyclerView recyclerView;
     PapersAdapter adapter;
     SharedPreferences sharedPreferences;
     int id=0;
     String role,Professor="Professor";
-    public fragment_requested() {
+    public fragment_review() {
         // Required empty public constructor
     }
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_requested, container, false);
+        View view = inflater.inflate(R.layout.fragment_review, container, false);
 
-        recyclerView = view.findViewById(R.id.recycler_req);
+        recyclerView = view.findViewById(R.id.recycler_rev);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         sharedPreferences= getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);

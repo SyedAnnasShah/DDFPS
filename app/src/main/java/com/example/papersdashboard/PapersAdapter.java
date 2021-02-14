@@ -13,10 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.IOException;
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -102,9 +100,9 @@ public class PapersAdapter extends RecyclerView.Adapter<PapersAdapter.MyViewHold
         if (holder.role.equals("Admin")) {
             holder.iv_admin.setVisibility(View.VISIBLE);
         }else if (holder.role.equals("Professor")){
-             holder.iv_teacher.setVisibility(View.VISIBLE);
+             holder.iv_director.setVisibility(View.VISIBLE);
         }else if (holder.role.equals("Director")){
-            holder.iv_teacher.setVisibility(View.VISIBLE);
+            holder.iv_director.setVisibility(View.VISIBLE);
             holder.teacher.setVisibility(View.VISIBLE);
             holder.teacherName.setVisibility(View.VISIBLE);
         }
@@ -117,16 +115,11 @@ public class PapersAdapter extends RecyclerView.Adapter<PapersAdapter.MyViewHold
                 }
             }
         });
-        holder.iv_teacher.setOnClickListener(new View.OnClickListener() {
+        holder.iv_director.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.role.equals("Professor")){
-                    Intent intent = new Intent(context, Generate_paper.class);
-                    intent.putExtra("type",items.get(position).getType());
-                    intent.putExtra("semester",items.get(position).getSemester());
-                    intent.putExtra("courseid",items.get(position).getCourseid());
-                    intent.putExtra("paperid",items.get(position).getPaperid());
-                    context.startActivity(intent);
+                if (holder.role.equals("Director")&& holder.status.equals("Review")){
+                    Toast.makeText(context, "Director image View Clicked", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -144,7 +137,7 @@ public class PapersAdapter extends RecyclerView.Adapter<PapersAdapter.MyViewHold
         TextView teacherName,teacher;
         SharedPreferences sharedPreferences;
         String role;
-        ImageView iv_teacher,iv_admin;
+        ImageView iv_director,iv_admin;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -154,7 +147,7 @@ public class PapersAdapter extends RecyclerView.Adapter<PapersAdapter.MyViewHold
             semester =itemView.findViewById(R.id.semester);
             teacher= itemView.findViewById(R.id.tv_assignedTeacher);
             teacherName= itemView.findViewById(R.id.tv_assignedTeacherName);
-            iv_teacher =itemView.findViewById(R.id.iv_teacher);
+            iv_director =itemView.findViewById(R.id.iv_director);
             iv_admin =itemView.findViewById(R.id.iv_admin);
             sharedPreferences=context.getSharedPreferences("MySharedPref",MODE_PRIVATE);
             role=sharedPreferences.getString("role","");

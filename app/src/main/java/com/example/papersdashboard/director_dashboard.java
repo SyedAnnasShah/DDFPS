@@ -79,8 +79,8 @@ public class director_dashboard extends AppCompatActivity implements NavigationV
                             ft0.replace(R.id.director_fragment_container, fragment0, "");
                             ft0.commit();
                             return true;
-                        case R.id.nav_dRequested:
-                            fragment_requested fragment1 = new fragment_requested();
+                        case R.id.nav_dReview:
+                            fragment_review fragment1 = new fragment_review();
                             FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
                             ft1.replace(R.id.director_fragment_container, fragment1, "");
                             ft1.commit();
