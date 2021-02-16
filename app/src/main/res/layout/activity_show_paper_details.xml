@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    tools:context=".ShowPaperDetails">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/paperdetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Paper Details"
+            android:textColor="#2196f3"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="32dp" />
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/back"/>
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btn_paperdetails"
+        android:onClick="ShowPopup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_header"
+        android:layout_centerInParent="true"
+        android:text="Show Paper Details"
+        android:backgroundTint="#2196f3"
+        />
+    <LinearLayout
+        android:id="@+id/namecodedatestatus"
+        android:layout_below="@id/btn_paperdetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_coursename_sh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Technical and Buisness writing"/>
+        <TextView
+            android:id="@+id/tv_coursecode_sh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ENG315"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tv_datecreated_sh"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="created date"/>-->
+        <TextView
+            android:id="@+id/tv_status_sh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Created"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/allteachersapproval"
+        android:layout_below="@+id/namecodedatestatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teacher"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:textSize="22dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="MID"
+            android:layout_centerInParent="true"
+            android:textSize="22dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="FINAL"
+            android:layout_alignParentRight="true"
+            android:textSize="22dp"/>
+
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_teachersapproval"
+        android:layout_below="@+id/allteachersapproval"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:listitem="@layout/approvalofteachers_layout"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_classes"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/recycler_teachersapproval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Classes"
+        android:textStyle="bold"
+        android:textSize="22dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_classes"
+        android:layout_below="@+id/tv_classes"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        tools:listitem="@layout/classeslist_layout"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/allteachers"
+        android:layout_below="@+id/namecodedatestatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/teachername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teacher"
+            android:layout_alignParentLeft="true"
+            android:textSize="22dp"/>
+
+        <TextView
+            android:id="@+id/midstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MID"
+            android:layout_centerInParent="true"
+            android:textSize="22dp"/>
+
+        <TextView
+            android:id="@+id/finalstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FINAL"
+            android:layout_alignParentRight="true"
+            android:textSize="22dp"/>
+    </RelativeLayout>
+</RelativeLayout>
