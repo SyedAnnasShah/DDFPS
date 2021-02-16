@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -77,6 +78,20 @@ public class Teacher_Dashboard extends AppCompatActivity implements NavigationVi
         String code= i.getStringExtra("c");
         Bundle bundle = new Bundle();
         bundle.putString("code", code);
+
+        final SwipeRefreshLayout pullToRefresh =findViewById(R.id.pullToRefreshHome);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // your code
+                setCourses();
+
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+
+
+
         setCourses();
 
 //        fragment_due fragment1=new fragment_due();

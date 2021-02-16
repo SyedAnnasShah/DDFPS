@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
 //    RecyclerView recyclerView;
 //    CoursesAdapter adapter;
     ImageView iv_menu;
+    Button btn_createAnnouncement;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,7 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
         drawerLayout= findViewById(R.id.admin_drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
+        btn_createAnnouncement=(Button)findViewById(R.id.btn_createAnnouncement) ;
         tv_username = (TextView) headerView.findViewById(R.id.tv_drawerusername);
         String name= sharedPreferences.getString("name","");
         name=name.toUpperCase();
@@ -60,7 +63,13 @@ public class admin_dashboard extends AppCompatActivity implements NavigationView
         });
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        btn_createAnnouncement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(admin_dashboard.this, Announcement.class);
+                startActivity(intent);
+            }
+        });
         ApprovedFragment fragment1=new ApprovedFragment();
         FragmentTransaction ft1=getSupportFragmentManager().beginTransaction();
         ft1.replace(R.id.admin_fragment_container,fragment1,"");

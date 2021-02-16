@@ -225,6 +225,7 @@
             android:background="#CDCBCB">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:background="@color/white"
                 android:id="@+id/recycler_questions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -247,13 +248,15 @@
             android:src="@drawable/imageicon"/>
 
         <ScrollView
-        android:layout_below="@+id/iv_addBullet"
-        android:id="@+id/svAdd"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:background="#CDCBCB">
+            android:layout_below="@+id/iv_addBullet"
+            android:id="@+id/svAdd"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            android:background="#CDCBCB"
+            android:backgroundTint="#f2f5df">
         <EditText
+            android:background="#f2f5df"
             android:id="@+id/addingques"
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -287,7 +290,6 @@
         android:id="@+id/spinnerdifficulty"
         android:layout_width="130dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
         android:layout_height="45dp" />
         <TextView
             android:layout_width="wrap_content"

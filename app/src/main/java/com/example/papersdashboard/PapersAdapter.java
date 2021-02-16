@@ -26,6 +26,7 @@ public class PapersAdapter extends RecyclerView.Adapter<PapersAdapter.MyViewHold
     private Context context;
     String code="",CourseName;
     String CourseCode;
+    int pid;
     public PapersAdapter(Context context, List<Papers> item) {
         this.context = context;
         this.items=item;
@@ -96,16 +97,18 @@ public class PapersAdapter extends RecyclerView.Adapter<PapersAdapter.MyViewHold
         holder.type.setText(items.get(position).getType());
         holder.status.setText(items.get(position).getStatus());
         holder.semester.setText(items.get(position).getSemester());
-
         if (holder.role.equals("Admin")) {
             holder.iv_admin.setVisibility(View.VISIBLE);
-        }else if (holder.role.equals("Professor")){
-             holder.iv_director.setVisibility(View.VISIBLE);
-        }else if (holder.role.equals("Director")){
-            holder.iv_director.setVisibility(View.VISIBLE);
+        }
+//        else if (holder.role.equals("Professor")){
+//             holder.iv_director.setVisibility(View.VISIBLE);}
+        else if (holder.role.equals("Director")){
+            if(items.get(position).getStatus().equals("Due"))
+                holder.iv_director.setVisibility(View.GONE);
             holder.teacher.setVisibility(View.VISIBLE);
             holder.teacherName.setVisibility(View.VISIBLE);
         }
+
         holder.iv_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,8 +121,17 @@ public class PapersAdapter extends RecyclerView.Adapter<PapersAdapter.MyViewHold
         holder.iv_director.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.role.equals("Director")&& holder.status.equals("Review")){
-                    Toast.makeText(context, "Director image View Clicked", Toast.LENGTH_SHORT).show();
+                if (holder.role.equals("Director")&& items.get(position).getStatus().equals("Review")){
+//                    SharedPreferences sharedPreferences;
+//                    SharedPreferences.Editor editor;
+//                    sharedPreferences=context.getSharedPreferences("MySharedPref",MODE_PRIVATE);
+//                    editor = sharedPreferences.edit();
+                    Intent intent = new Intent(context, AddComments.class);
+                    intent.putExtra("type", items.get(position).getType());
+                    intent.putExtra("semester", items.get(position).getSemester());
+                    intent.putExtra("courseid", items.get(position).getCourseid());
+                    intent.putExtra("paperid", items.get(position).getPaperid());
+                    context.startActivity(intent);
                 }
             }
         });
@@ -136,6 +148,7 @@ public class PapersAdapter extends RecyclerView.Adapter<PapersAdapter.MyViewHold
         TextView semester;
         TextView teacherName,teacher;
         SharedPreferences sharedPreferences;
+        SharedPreferences.Editor editor;
         String role;
         ImageView iv_director,iv_admin;
 
@@ -150,6 +163,7 @@ public class PapersAdapter extends RecyclerView.Adapter<PapersAdapter.MyViewHold
             iv_director =itemView.findViewById(R.id.iv_director);
             iv_admin =itemView.findViewById(R.id.iv_admin);
             sharedPreferences=context.getSharedPreferences("MySharedPref",MODE_PRIVATE);
+            editor = sharedPreferences.edit();
             role=sharedPreferences.getString("role","");
         }
     }

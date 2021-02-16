@@ -8,7 +8,7 @@ public class
 
 RetrofitClient {
 
-    private static final String base_url="http://192.168.1.113:4500/api/login/";
+    private static final String base_url="http://192.168.18.28:4500/api/login/";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
 

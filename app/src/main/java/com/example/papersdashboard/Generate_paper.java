@@ -69,7 +69,6 @@ public class Generate_paper extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_paper);
-
         recycler_questions=findViewById(R.id.recycler_questions);
 
         recycler_questions.setHasFixedSize(true);
@@ -78,7 +77,6 @@ public class Generate_paper extends AppCompatActivity {
         myDialog = new Dialog(this);
         Window window = myDialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
-
         // to set dialog(paper details) at top
         wlp.gravity = Gravity.TOP;
         wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
@@ -98,6 +96,7 @@ public class Generate_paper extends AppCompatActivity {
         //cname=intent.getStringExtra("coursename");
 
         tv_coursename=findViewById(R.id.tv_coursename);
+
         Call<Courses> call = RetrofitClient
                 .getInstance()
                 .getApi()
@@ -165,19 +164,23 @@ public class Generate_paper extends AppCompatActivity {
                 String selectedItem = parent.getItemAtPosition(position).toString();
                 if(selectedItem.equals("Easy"))
                 {
-                    s_difficulty.setBackgroundColor(Color.GREEN);
+                    //s_difficulty.setBackgroundColor(Color.GREEN);
+                    ((TextView) parent.getChildAt(0)).setTextColor(Color.GREEN);
                     // do your stuff
                     questionDifficulty="easy";
                 }
                 else if(selectedItem.equals("Medium"))
                 {
-                    s_difficulty.setBackgroundColor(Color.YELLOW);
+                    //s_difficulty.setBackgroundColor(Color.YELLOW);
+                    ((TextView) parent.getChildAt(0)).setTextColor(Color.BLUE);
                     // do your stuff
                     questionDifficulty="medium";
                 }
                 else if(selectedItem.equals("Hard"))
                 {
-                    s_difficulty.setBackgroundColor(Color.RED);
+                    //s_difficulty.setBackgroundColor(Color.RED);
+                    ((TextView) parent.getChildAt(0)).setTextColor(Color.RED);
+
                     // do your stuff
                     questionDifficulty="hard";
                 }
@@ -205,11 +208,19 @@ public class Generate_paper extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                storingImage="";
                 if(bitmap!=null){
                     storingImage=convertToString();
-                }else if(storingImage==null){
-                    storingImage="";
                 }
+                if(iv_image==null){
+                    Toast.makeText(Generate_paper.this, "Image view "+iv_image, Toast.LENGTH_SHORT).show();
+                    bitmap=null;
+                }
+//                if(bitmap!=null){
+//                    storingImage=convertToString();
+//                }else if(bitmap==null){
+//                    storingImage="";
+//                }
                 if(questionDifficulty=="easy"){
                     e++;
 //                    easy_added.setText(String.valueOf(e));
@@ -246,6 +257,7 @@ public class Generate_paper extends AppCompatActivity {
                 que.difficulty=questionDifficulty;
                 que.questiondata=n;
                 questions.add(que);
+                que.image=storingImage;
                 indexoflist=indexoflist+1;
                 questionNumberBeingAdded=questionNumberBeingAdded+1;
 
@@ -254,9 +266,13 @@ public class Generate_paper extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
 
                 //now clear every feild
+//                bitmap.recycle();
+                bitmap=null;
+                storingImage="";
                 iv_image.invalidate();
                 iv_image.setImageBitmap(null);
                 et_marks.setText("");
+                Toast.makeText(Generate_paper.this, ""+bitmap, Toast.LENGTH_SHORT).show();
             }
         });
         btn_generatePaper =findViewById(R.id.btn_generatePaper);
@@ -264,8 +280,9 @@ public class Generate_paper extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AddQuestions(); //here only questions were being save via loop
-                changePaperStatusToreview(pid);
-
+//                changePaperStatusToreview(pid);
+                Toast.makeText(Generate_paper.this, "Generated ", Toast.LENGTH_SHORT).show();
+                onBackPressed();
                 //CreateQuestionObject(); // here list of question is being saved and status of paper is also being set as review from Due
             }
         });
@@ -278,6 +295,36 @@ public class Generate_paper extends AppCompatActivity {
     }
 
     private void changePaperStatusToreview(int pid) {
+//call to change status
+        Call<ResponseBody> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .updatethestatusREVIEW(pid);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        String res = response.body().string();
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+
+                } else {
+                    try {
+                        Toast.makeText(Generate_paper.this, "Failed " + response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(Generate_paper.this, "Failed  " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("Failed", t.getMessage());
+            }
+        });
 
     }
 
@@ -321,13 +368,12 @@ public class Generate_paper extends AppCompatActivity {
 
     private void AddQuestions(){
         int i=0;
-        for(;i<questions.size();i++) {
-            Toast.makeText(this, ""+questions.get(i).questionno+questions.get(i).questiondata+questions.get(i).difficulty+questions.get(i).image+questions.get(i).paperid+questions.get(i).marks, Toast.LENGTH_LONG).show();
+        for(;i<6;i++) {
+            //Toast.makeText(this, ""+questions.get(i).questionno+questions.get(i).questiondata+questions.get(i).difficulty+questions.get(i).image+questions.get(i).paperid+questions.get(i).marks, Toast.LENGTH_LONG).show();
             Call<ResponseBody> call = RetrofitClient
                     .getInstance()
                     .getApi()
-                    .AddQuestion(questions.get(i).questionno,questions.get(i).questiondata,questions.get(i).difficulty,questions.get(i).image,questions.get(i).paperid,questions.get(i).marks);
-            //questions.get(i).paperid, questions.get(i).questionno, questions.get(i).questiondata, questions.get(i).difficulty, questions.get(i).image, questions.get(i).paperid, "NULL",questions.get(i).marks
+                    .AddQuestions(questions.get(i).questionno,questions.get(i).questiondata,questions.get(i).difficulty,questions.get(i).image,questions.get(i).paperid,questions.get(i).status,questions.get(i).marks,questions.get(i).comments);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -353,8 +399,10 @@ public class Generate_paper extends AppCompatActivity {
                     Log.d("Failed", t.getMessage());
                 }
             });
-            Toast.makeText(this, "DONE", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "DONE", Toast.LENGTH_SHORT).show();
         }
+
+
     }// on create body
 
     private String convertToString()

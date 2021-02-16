@@ -26,53 +26,97 @@
             android:textStyle="bold"
             android:textSize="32dp" />
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/layout_paperdetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_header">
+        <Button
+            android:id="@+id/btn_paperdetails"
+            android:onClick="ShowPopup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Show Paper Details"
+            android:backgroundTint="#2196f3"
+            />
+    </RelativeLayout>
+
     <ScrollView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/sv_questionddetails"
-        android:layout_below="@id/layout_header"
+        android:layout_below="@id/layout_paperdetails"
         android:layout_width="match_parent"
         android:background="#8888"
         android:layout_height="300dp">
     <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
         android:layout_height="300dp"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/tv_questionaddeddetail"
+        <EditText
+            android:id="@+id/tv_questiondatadb"
+            android:gravity="top|left"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:textSize="20dp"
+            android:textStyle="bold"
             android:text="Question"/>
-        <TextView
-            android:id="@+id/tv_questionaddeddificulty"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text=" easyy" />
-        <TextView
-            android:id="@+id/tv_questionaddedmarks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Marks: "/>
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_questionaddedmarksdb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="10dp"
+                android:text="Marks: "/>
+            <TextView
+                android:id="@+id/tv_questionaddeddificultydb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:text=" easy" />
+            <TextView
+                android:id="@+id/tv_questionStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="" />
+
+        </LinearLayout>
         <ImageView
-            android:id="@+id/iv_questionaddedimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/imageicon"
+            android:id="@+id/iv_questionaddedimagedb"
+            android:layout_width="100dp"
+            android:background="@color/white"
+            android:layout_height="100dp"/>
     </LinearLayout>
     </ScrollView>
-   <RelativeLayout
+
+
+    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_below="@id/sv_questionddetails"
        android:layout_marginTop="15dp"
        android:layout_height="match_parent">
 
        <ScrollView
+
+           android:layout_marginLeft="10dp"
+           android:layout_marginRight="10dp"
            android:id="@+id/comments_area"
            android:layout_width="match_parent"
            android:layout_height="200dp"
            android:background="#CDCBCB">
             <EditText
+                android:id="@+id/et_AddedCommentsArea"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
        </ScrollView>
@@ -86,6 +130,7 @@
            android:text="Accept"
            />
        <Button
+           android:layout_marginRight="10dp"
            android:id="@+id/btn_RejectQuestion"
            android:layout_below="@id/comments_area"
            android:backgroundTint="#2196f3"
@@ -106,6 +151,7 @@
           >
 
            <Button
+
                android:id="@+id/btn_q1"
                android:layout_marginLeft="14dp"
                android:backgroundTint="#2196f3"
@@ -166,12 +212,24 @@
        </LinearLayout>
 
        <Button
-           android:id="@+id/btn_approve"
+           android:layout_marginLeft="10dp"
+           android:id="@+id/btn_approvePaper"
            android:layout_below="@+id/btn_RejectQuestion"
            android:backgroundTint="#2196f3"
-           android:layout_width="match_parent"
+           android:layout_width="180dp"
            android:layout_height="wrap_content"
            android:text="Approve"
            android:layout_marginTop="130dp"/>
+       <Button
+           android:layout_marginRight="10dp"
+           android:id="@+id/btn_returnFromPaper"
+           android:layout_below="@+id/btn_RejectQuestion"
+           android:backgroundTint="#2196f3"
+           android:layout_width="180dp"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:text="Return"
+           android:layout_marginTop="130dp"/>
+
    </RelativeLayout>
 </RelativeLayout>

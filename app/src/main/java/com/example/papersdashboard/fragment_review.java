@@ -53,7 +53,7 @@ public class fragment_review extends Fragment {
         Call<List<Papers>> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getPapers("Requested",id);
+                .getPapers("Review",id);
         call.enqueue(new Callback<List<Papers>>() {
             @Override
             public void onResponse(Call<List<Papers>> call, Response<List<Papers>> response) {

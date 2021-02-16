@@ -7,6 +7,8 @@
     tools:context=".ApprovedFragment"
     android:background="#CDCBCB">
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"

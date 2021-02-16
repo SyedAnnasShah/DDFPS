@@ -42,10 +42,9 @@ public class fragment_due extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         sharedPreferences= getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         role=sharedPreferences.getString("role","");
-        if(role.equals(Professor)){
-            id=sharedPreferences.getInt("id",0);
-        }else
-            Toast.makeText(getContext(), " Role "+role + "ID  "+id, Toast.LENGTH_LONG).show();
+//        if(role.equals(Professor)){
+//            id=sharedPreferences.getInt("id",0);
+//        }
 
         setCourses();
         return view;

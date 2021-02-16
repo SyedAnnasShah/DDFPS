@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PaperCorrection">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/layout_1"
+    <RelativeLayout
+        android:orientation="vertical"
+        android:id="@+id/layout_head"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -15,51 +15,121 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/back"/>
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_below="@id/layout_1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/paper_image"
-            android:layout_width="400dp"
-            android:layout_height="400dp"
-            android:src="@drawable/papertemplate" />
-        <ScrollView
-            android:id="@+id/comments_area"
-            android:layout_below="@+id/paper_image"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="#CDCBCB">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Q No:1 What is Waterfall model?"/>
-
-        </ScrollView>
         <TextView
-            android:id="@+id/qnot"
-            android:layout_below="@id/comments_area"
+            android:id="@+id/temporary"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:padding="10dp"
-            android:text="Make it more Detailed/Difficult"
-            android:scrollbars = "vertical"
+            android:layout_height="wrap_content"
+            android:text="Correction"
+            android:textColor="#2196f3"
+            android:layout_marginLeft="130dp"
             android:textStyle="bold"
-            android:scrollbarSize="15dp" />
+            android:textSize="32dp" />
+
+    </RelativeLayout>
+    <ScrollView
+        android:background="@drawable/rectangle"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/sv_QuestiondetailsRS"
+        android:layout_below="@id/layout_head"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical">
+            <EditText
+                android:layout_marginLeft="5dp"
+                android:id="@+id/et_questiondataRE"
+                android:gravity="top|left"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="Question"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_questionaddedmarksRE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Marks"/>
+                <TextView
+                    android:id="@+id/tv_questionaddeddificultyRE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Difficulty" />
+                <TextView
+                    android:id="@+id/tv_questionStatusRE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Status" />
+
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_questionaddedimageRE"
+                android:layout_width="130dp"
+                android:background="@color/white"
+                android:layout_height="100dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+    </ScrollView>
+    <ScrollView
+        android:layout_marginRight="10dp"
+        android:background="@drawable/rectangle"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/sv_commentRE"
+        android:layout_below="@+id/sv_QuestiondetailsRS"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="15dp">
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/tv_DirectorComments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Comments "
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+    </ScrollView>
+    <RelativeLayout
+        android:layout_below="@id/sv_commentRE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <Spinner
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/qnot"
-            android:id="@+id/spinnerdifficulty"
+            android:id="@+id/spinnerdifficultyRE"
             android:layout_width="130dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
             android:layout_height="45dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marks "
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="140dp"/>
+        <EditText
+
+            android:id="@+id/et_marks_RE"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"/>
         <Button
-            android:id="@+id/btn_RejectQuestion"
-            android:layout_below="@id/qnot"
+            android:layout_marginRight="10dp"
+            android:id="@+id/btn_UpdateQuestion"
             android:backgroundTint="#2196f3"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
@@ -71,15 +141,11 @@
             android:layout_marginTop="45dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_RejectQuestion"
+            android:layout_below="@+id/btn_UpdateQuestion"
             android:orientation="horizontal"
-            android:padding="10dp"
-
-            >
-
+            android:padding="10dp">
             <Button
                 android:id="@+id/b1"
-                android:textColor="#FF0000"
                 android:layout_marginLeft="14dp"
                 android:backgroundTint="#2196f3"
                 android:layout_width="50dp"
@@ -92,7 +158,6 @@
                 android:layout_marginLeft="14dp"
                 android:backgroundTint="#2196f3"
                 android:layout_width="50dp"
-                android:textColor= "#00ff00"
                 android:layout_height="50dp"
                 android:text="2"
                 android:textSize="25dp"
@@ -100,7 +165,6 @@
             <Button
                 android:id="@+id/b3"
                 android:layout_marginLeft="14dp"
-                android:textColor= "#00ff00"
                 android:backgroundTint="#2196f3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -111,7 +175,6 @@
                 android:id="@+id/b4"
                 android:layout_marginLeft="14dp"
                 android:backgroundTint="#2196f3"
-                android:textColor= "#00ff00"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:text="4"
@@ -122,7 +185,6 @@
                 android:id="@+id/b5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:textColor= "#00ff00"
                 android:layout_marginLeft="14dp"
                 android:backgroundTint="#2196f3"
                 android:text="5"
@@ -132,21 +194,19 @@
                 android:id="@+id/b6"
                 android:layout_marginLeft="14dp"
                 android:backgroundTint="#2196f3"
-                android:textColor= "#00ff00"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:text="6"
                 android:textSize="25dp"
                 />
 
-
-
-
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_approve"
-            android:layout_below="@+id/btn_RejectQuestion"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/btn_ReSubmit"
+            android:layout_below="@+id/btn_UpdateQuestion"
             android:backgroundTint="#2196f3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,4 +214,4 @@
             android:layout_marginTop="130dp"/>
     </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

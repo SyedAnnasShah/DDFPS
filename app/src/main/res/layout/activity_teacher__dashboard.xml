@@ -51,12 +51,18 @@
 
             </LinearLayout>
 
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/pullToRefreshHome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_teachercourse"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:listitem="@layout/teachercourses_layout" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         </LinearLayout>
 
